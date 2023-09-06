@@ -1,2 +1,2 @@
 # cocheRC-BT
-Coche RC + aplicación BT, empleando Arduino
+Coche RC + aplicación BT   mitAPP, empleando Arduino
