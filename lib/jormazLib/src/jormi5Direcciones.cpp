@@ -135,52 +135,56 @@ bool jormi5Direcciones::reset()
 	Update
 */
 void jormi5Direcciones::update()
-{	
-	byte leido;
+{
+	/*	COMENTADO PARA EVITAR ERRORES, PENDIENTE DE REVSION 2023
 	
-	leido = digitalRead(_pinUP);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_UP);
-	else
-		_estado = bitClear(_estado, BUTTON_UP);	
-		
-	leido = digitalRead(_pinDWN);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_DOWN);
-	else
-		_estado = bitClear(_estado, BUTTON_DOWN);	
-		
-	leido = digitalRead(_pinLFT);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_LEFT);
-	else
-		_estado = bitClear(_estado, BUTTON_LEFT);	
-		
-	leido = digitalRead(_pinRHT);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_RIGHT);
-	else
-		_estado = bitClear(_estado, BUTTON_RIGHT);	
-		
-	leido = digitalRead(_pinMID);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_MID);
-	else
-		_estado = bitClear(_estado, BUTTON_MID);	
-		
-	leido = digitalRead(_pinSET);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_SET);
-	else
-		_estado = bitClear(_estado, BUTTON_SET);	
-		
-	leido = digitalRead(_pinRST);
-	if( leido != HIGH)
-		_estado = bitSet(_estado, BUTTON_RESET);
-	else
-		_estado = bitClear(_estado, BUTTON_RESET);	
-			
 	
+		byte leido;
+
+
+		leido = digitalRead(_pinUP);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_UP);
+		else
+			_estado = bitClear(_estado, BUTTON_UP);
+
+		leido = digitalRead(_pinDWN);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_DOWN);
+		else
+			_estado = bitClear(_estado, BUTTON_DOWN);
+
+		leido = digitalRead(_pinLFT);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_LEFT);
+		else
+			_estado = bitClear(_estado, BUTTON_LEFT);
+
+		leido = digitalRead(_pinRHT);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_RIGHT);
+		else
+			_estado = bitClear(_estado, BUTTON_RIGHT);
+
+		leido = digitalRead(_pinMID);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_MID);
+		else
+			_estado = bitClear(_estado, BUTTON_MID);
+
+		leido = digitalRead(_pinSET);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_SET);
+		else
+			_estado = bitClear(_estado, BUTTON_SET);
+
+		leido = digitalRead(_pinRST);
+		if( leido != HIGH)
+			_estado = bitSet(_estado, BUTTON_RESET);
+		else
+			_estado = bitClear(_estado, BUTTON_RESET);
+
+	*/
 }
 
 
