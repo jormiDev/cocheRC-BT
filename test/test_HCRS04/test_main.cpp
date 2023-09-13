@@ -43,15 +43,13 @@ Servo myservo;                //SG90
 char comando;                 // Comando leido de la appMIT inventor
 
 
-
 /*
  * ********   T E S T    ***************
  */
-
  
  
 //Calculo de la distancia (medida simple)  
- void TestingUltrasonidos01(){
+ void test_Ultrasonidos01(){
 	delay(2500);
 	mensaje.texto("* TestingHC-SR04 * \t Medida simple ");
 	mensaje.salto();
@@ -60,7 +58,7 @@ char comando;                 // Comando leido de la appMIT inventor
 
 
 //Calculo de la distancia (medida multiple)  
- void TestingUltrasonidos02(){
+ void test_Ultrasonidos02(){
 	delay(2500);
 	mensaje.texto("* TestingHC-SR04 * \t Medida multiple ");
 	mensaje.salto();
@@ -84,7 +82,7 @@ char comando;                 // Comando leido de la appMIT inventor
 
 
  // Mide todas las distancias (distanciaUpdate)
- void TestingUltrasonidos03(){
+ void test_Ultrasonidos03(){
 	mensaje.texto("* TestingHC-SR04 * \t Medida en todas las direcciones ");
 	mensaje.salto();
 
@@ -107,26 +105,12 @@ char comando;                 // Comando leido de la appMIT inventor
  * ********   S E T U P   ***************
  */
 
- 
- void setUp(void)
-{
-  // before test
-}
-
-void tearDown(void)
-{
-  // after test
-}
 
 void setup()
 {
-
   Serial.begin(9600);
 
-  maquinaEstados = 0;
-
   distanciaSetup();   // HC-SR04 + SG90
-
 
   tiempoPrevio = millis();
   tiempoActual = tiempoPrevio;
@@ -136,13 +120,18 @@ void setup()
   delay(1000);
 }
 
+void tearDown(void)
+{
+  // after test
+}
 
 
 /*
  * ********   L O O P   ***************
  */
 
-void loop()
+//void loop()
+int main(int argc, char **argv) 
 {
 
   mensaje.texto("inicio loop");
@@ -152,9 +141,9 @@ void loop()
 
   UNITY_BEGIN();
   
-  RUN_TEST(TestingUltrasonidos01);
-  RUN_TEST(TestingUltrasonidos02);
-  RUN_TEST(TestingUltrasonidos03);
+  RUN_TEST(test_Ultrasonidos01);
+  //RUN_TEST(test_Ultrasonidos02);
+  //RUN_TEST(test_Ultrasonidos03);
 
   UNITY_END();
   
