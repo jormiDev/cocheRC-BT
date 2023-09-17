@@ -11,8 +11,6 @@
 #include "CBasicoSensorDist.hpp"
 #include "logicaRC.hpp"
 
-#include "CBasicoTesting.hpp"           //   funciones de testing
-
  
 /*
  * Objetos y variables
@@ -86,18 +84,6 @@ void loop()
   delay(2000);
 
   //comando = remotoLeer();                           // leer el buffer BT y almacenar el comando
-
-
-
-  // TESTING
-
-  //TestingServo01();
-  //TestingServo02();
-  //TestingUltrasonidos01();
-  //TestingUltrasonidos02();
-  //TestingUltrasonidos03();
-  TestingMotor01();
-
 
 
   // switch (maquinaEstados)

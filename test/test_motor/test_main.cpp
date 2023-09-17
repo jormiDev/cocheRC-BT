@@ -46,15 +46,6 @@ char comando;                 // Comando leido de la appMIT inventor
 /*
  * ********   T E S T    ***************
  */
-
- 
-	// VELOCIDAD_BAJA		80			    //Velocidades 0..255
-	// VELOCIDAD_MEDIA		160
-	// VELOCIDAD_MAXIMA		240
-	// VELOCIDAD_GIRO		40
-	// GIRO_45				200				//Tiempo de maniobra
-	// GIRO_90				400
-	// GIRO_180				400
 	
 	
 // Test D/I avance

@@ -60,10 +60,14 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define DISTANCIA_66		50			    //Distancia segura, vel MEDIA
 #define DISTANCIA_100		75			    //Distancia segura, vel MAXIMA
 
-#define VELOCIDAD_BAJA		80			    //Velocidades 0..255
-#define VELOCIDAD_MEDIA		150
-#define VELOCIDAD_MAXIMA	255
-#define VELOCIDAD_STOP    0
-#define VELOCIDAD_GIRO		50			    //Velocidad maniobras de giro
+#define VELOCIDAD_BAJA      80              // Velocidades 0..255
+#define VELOCIDAD_MEDIA     160
+#define VELOCIDAD_MAXIMA    240
+#define VELOCIDAD_GIRO      40
+#define VELOCIDAD_STOP      0
+
+#define GIRO_45             200             // Tiempo de maniobra
+#define GIRO_90             400
+#define GIRO_180            400
 
 #endif	//__JORMAZ_CONSTANTES_H__
