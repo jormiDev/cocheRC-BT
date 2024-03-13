@@ -11,6 +11,11 @@
 #include "CBasicoSensorDist.hpp"
 #include "logicaRC.hpp"
 
+/* INICIO SECCION TEST  */
+#include "test_SensorDist.hpp"
+/* FIN SECCION TEST     */
+
+
  
 /*
  * Objetos y variables
@@ -55,7 +60,7 @@ void setup()
   maquinaEstados = 0;
 
   distanciaSetup();   // HC-SR04 + SG90
-  motorSetup();       // motores
+  //motorSetup();       // motores
  // remotoSetup();
 
 
@@ -67,6 +72,8 @@ void setup()
   // Fin setup
   mensaje.texto(" loop ");
   delay(1000);
+
+  mensaje.texto("inicio loop");
 }
 
 
@@ -78,10 +85,24 @@ void setup()
 void loop()
 {
 
-  mensaje.texto("inicio loop");
-
   tiempoActual = millis();                          // tiempo del sistema
   delay(2000);
+
+
+  /* INICIO SECCION TEST  */
+
+  //mensaje.texto("TEST HC-SR04");
+  // test_Ultrasonidos01();
+  // test_Ultrasonidos02();
+  // test_Ultrasonidos03();
+
+  mensaje.texto("TEST SG90");
+  void test_Servo01();
+  // void test_Servo02();
+
+  /* FIN SECCION TEST  */
+
+
 
   //comando = remotoLeer();                           // leer el buffer BT y almacenar el comando
 

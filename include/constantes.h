@@ -29,8 +29,8 @@
 #define PIN_BT_RX               9       //Pines BT
 #define PIN_BT_TX               10
 
-#define PIN_ENC_DCHO     	    11     //Pin encoder rotación lado derecho
-#define PIN_ENC_IZQ      	    12     //Pin encoder rotación lado izquierdo
+#define PIN_ENC_IZQ      	    11     //Pin encoder rotación lado izquierdo
+#define PIN_ENC_DCHO     	    12     //Pin encoder rotación lado derecho
 
 
 
