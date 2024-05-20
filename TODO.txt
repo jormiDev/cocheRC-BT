@@ -1,59 +1,17 @@
-AutoRC
-----------------------
+Commits
 
-fritzing 
-    esquema de conexiones
-                    20230509    Pines ok    2, 3, 4, 5, 6, 7, 8, 11, 12
+    ble 002     20240510
+        escanea / conecta / desconecta / quita app bley 
+        activa y desactiva botones al conectary deconectar ble
+        boton modo: cambia de modo y envia comando
 
-
-
-app.diagrams.net
-    maquina de estados
-    funciones interface-app/BT
-    app MIT inventor
+    ble 003     20240520
+        cambio el codigo de main INO a main VisualC
+        probar de nuevo conexion y desconexion ble
+        cocheBLE.cpp - funciones cuando des/conecta y estando des/conectado
 
 
-CBasicoSensorDist
-    init   HCSR04
-                    20230509    ok init
-    init    SG90
-                    20230509    ok init
-    mover   SG90
-                    20230509    TestingServo01()
-                                TestingServo02()
-    medir   HCSR04 (frontal/todas)
-                    20230509    TestingUltrasonidos01()
-                                TestingUltrasonidos02()
-                                TestingUltrasonidos03()
 
-CBasicoMotor
-    init    motores
-                    20230512    ok init
-    init    encoder  D/I
-                    20230512    ok init
-    test avante D/I
-    test atras D/I
-    test encoder D/I
-    calculo giroD  45 grados
-    calculo giroI  45 grados
-    calculo giroD  90 grados
-    calculo giroI  90 grados
-    calculo giroD  135 grados
-    calculo giroI  135 grados
-    calculo giroD  180 grados
-    calculo giroI  180 grados
-
-
-logicaRC (evaluar varios supuestos)
-    logicaBasica();
-    logicaGiro();
-    maquina de estados
-
-
-CBasicoRemoto
-    init BT
-    init remoto
-    leer remoto
 
 App MIT inventor
     crear App

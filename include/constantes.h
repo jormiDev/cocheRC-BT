@@ -70,4 +70,19 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define GIRO_90             400
 #define GIRO_180            400
 
+
+/*
+ *   App MIT inventor
+ *
+ *      mensajes recibidos
+ *      MAC  UNO r4 Wifi Pradera      F4:12:FA:76:20:A9
+ */
+
+
+#define app_1               1       // modo auto
+#define app_2               2       // modo manual
+
+
+
+
 #endif	//__JORMAZ_CONSTANTES_H__
