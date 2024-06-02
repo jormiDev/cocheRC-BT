@@ -10,14 +10,20 @@ Commits
         probar de nuevo conexion y desconexion ble
         cocheBLE.cpp - funciones cuando des/conecta y estando des/conectado
 
+    ble 004
+    ble 005     20240602
+        datos de conexion BLE
+
+        (appMIT) probar botones 
+            auto/man
+            stop
+            izq / drcha / fwd / aft
 
 
+        (appMIT) envio comandos
 
-App MIT inventor
-    crear App
-    conectar/desconectar BT
-    modo manula/auto
-    envio/recepcion comandos
+        recibir comandos appMIT y mostarlos por terminal
+
 
 
 

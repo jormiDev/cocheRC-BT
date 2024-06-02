@@ -1,9 +1,16 @@
 /*
  *  Notas
 */
+
 //https://www.teachmemicro.com/lm393-ir-module-motor-speed-sensor/
 //Los shaft encoders (sensores de velocidad) emplean los pines de interrupción 2 y 3 en Uno y Nano
 
+/*
+    BLE Bluethoo
+
+app MIT (telefono)                      Central - the BLE device which initiates an outgoing connection request to an advertising peripheral device
+Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accepts an incoming connection request after advertising
+*/
 
 #ifndef __JORMAZ_CONSTANTES_H__
 #define __JORMAZ_CONSTANTES_H__
@@ -31,10 +38,6 @@
 
 #define PIN_ENC_DCHO     	    11     //Pin encoder rotación lado derecho
 #define PIN_ENC_IZQ      	    12     //Pin encoder rotación lado izquierdo
-
-
-
-
 
 
 /*
@@ -78,10 +81,19 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
  *      MAC  UNO r4 Wifi Pradera      F4:12:FA:76:20:A9
  */
 
+#define BLE_LOCAL_NAME      "UNOr4Wifi_Pradera"
+#define BLE_DEVICE_NAME     "UNOr4Wifi_Pradera"
+#define BLE_SERVICE         "19B10000-E8F2-537E-4F6C-D104768A1214"
+#define BLE_CARACTERISTICA  "e2db61fc-d45c-45d7-b488-e9eb2723686f"
+
 
 #define app_1               1       // modo auto
 #define app_2               2       // modo manual
-
+#define app_3               3       // stop
+#define app_4               4       // fwd
+#define app_5               5       // aft
+#define app_6               6       // izqda
+#define app_7               7       // drcha
 
 
 

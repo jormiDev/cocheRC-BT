@@ -9,9 +9,9 @@
 #include <constantes.h>
 #include "cocheBLE.hpp"
 
-BLEService unor4wifiService("19B10000-E8F2-537E-4F6C-D104768A1214"); // Bluetooth® Low Energy LED Service
-BLEByteCharacteristic unor4wifiCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214",
-                                              BLERead | BLEWrite); // BlLE Characteristic - custom 128-bit UUID, read and writable by central
+BLEService unor4wifiService(BLE_SERVICE); // Bluetooth® Low Energy LED Service
+BLEIntCharacteristic unor4wifiCharacteristic(BLE_CARACTERISTICA,
+                                             BLERead | BLEWrite | BLENotify); // BlLE Characteristic - custom 128-bit UUID, read and writable by central
 
 const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
 
@@ -49,12 +49,22 @@ void setup(){
             ;
     }
 
-    BLE.setLocalName("UNOr4Wifi_Pradera"); // set advertised local name and service UUID:
+    // set advertised local name and service UUID:
+    BLE.setLocalName(BLE_LOCAL_NAME);                           
+    BLE.setDeviceName(BLE_DEVICE_NAME);
     BLE.setAdvertisedService(unor4wifiService);
-    unor4wifiService.addCharacteristic(unor4wifiCharacteristic); // add the characteristic to the service
-    BLE.addService(unor4wifiService);                            // add service
-    unor4wifiCharacteristic.writeValue(0);                       // set the initial value for the characeristic:
-    BLE.advertise();                                             // start advertising
+
+    // add the characteristic
+    unor4wifiService.addCharacteristic(unor4wifiCharacteristic); 
+
+    // add the service
+    BLE.addService(unor4wifiService);   
+
+    // set the initial value for the characeristics
+    unor4wifiCharacteristic.writeValue(0);                
+
+    // start advertising       
+    BLE.advertise();                                             
 
     Serial.println("/nsetup : BLE init OK");
 
@@ -75,26 +85,16 @@ void loop()
     central = BLE.central();
 
     // if a central is connected to peripheral:
-    if (central)
-    {
-        conectadoBLE();
+    if (central){
+
+        conectadoBLE();                 //  ejecuta una vez al conectar
 
         // while the central is still connected to peripheral:
-        while (central.connected())
-        {
-            //  //////////////////////  INICIO Conectado a BLE         //////////////////////
+        while (central.connected()){
+           
+            loopConectado();            //  loop cuando conectdo
+        }   
 
-            loopConectado();
-
-
-        } //  //////////////////////  FIN Conectado a BLE   //////////////////////
-
-        //  //////////////////////  INICIO Desconectado a BLE    //////////////////////
-
-        desconectadoBLE();
-
-
-
-        //  //////////////////////  FIN Desconectado a BLE    //////////////////////
+        desconectadoBLE();              //  ejecuta una vez al desconectar
     }
 }

@@ -6,14 +6,15 @@
 #include "WiFiS3.h"
 #include <Wire.h>
 #include <SPI.h>
+#include "constantes.h"
 
 /*
  * 	Objetos y variables
  */
 
 extern BLEDevice central;
-//extern BLEService unor4wifiService;
-extern BLEByteCharacteristic unor4wifiCharacteristic ;
+extern BLEService unor4wifiService;
+extern BLEIntCharacteristic unor4wifiCharacteristic;
 extern const int ledPin;
 
 /*
