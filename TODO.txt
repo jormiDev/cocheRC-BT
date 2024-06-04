@@ -12,7 +12,9 @@ Commits
 
     ble 004
     ble 005     20240602
+                20240604
         datos de conexion BLE
+
 
         (appMIT) probar botones 
             auto/man

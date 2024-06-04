@@ -14,8 +14,11 @@
 
 extern BLEDevice central;
 extern BLEService unor4wifiService;
-extern BLEIntCharacteristic unor4wifiCharacteristic;
+extern BLEIntCharacteristic unor4wifiCharacteristicMODO;
+extern BLEIntCharacteristic unor4wifiCharacteristicDIRECT;
 extern const int ledPin;
+extern int ble_Modo;
+extern int ble_Direct;
 
 /*
  * 	* * * * * Funciones * * * * *

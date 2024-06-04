@@ -9,18 +9,17 @@
 #include <constantes.h>
 #include "cocheBLE.hpp"
 
-BLEService unor4wifiService(BLE_SERVICE); // Bluetooth® Low Energy LED Service
-BLEIntCharacteristic unor4wifiCharacteristic(BLE_CARACTERISTICA,
-                                             BLERead | BLEWrite | BLENotify); // BlLE Characteristic - custom 128-bit UUID, read and writable by central
+// listen for Bluetooth® Low Energy peripherals to connect:
+BLEDevice central;
+// Bluetooth® Low Energy LED Service
+BLEService unor4wifiService(BLE_SERVICE); 
+// BlLE Characteristic 
+BLEIntCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify);
+BLEIntCharacteristic unor4wifiCharacteristicDIRECT(BLE_CARACT_DIRECT, BLERead | BLEWrite | BLENotify);
 
 const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
-
-BLEDevice central;                  // listen for Bluetooth® Low Energy peripherals to connect:
-
-
-
-
-
+int ble_Modo = -1;
+int ble_Direct = -2;
 
 
 
@@ -36,6 +35,7 @@ void setup(){
     Serial.begin(9600);
     while (!Serial)
         ;
+    Serial.println();
     Serial.println("setup : init");
 
     // set LED pin to output mode
@@ -53,18 +53,16 @@ void setup(){
     BLE.setLocalName(BLE_LOCAL_NAME);                           
     BLE.setDeviceName(BLE_DEVICE_NAME);
     BLE.setAdvertisedService(unor4wifiService);
-
     // add the characteristic
-    unor4wifiService.addCharacteristic(unor4wifiCharacteristic); 
-
+    unor4wifiService.addCharacteristic(unor4wifiCharacteristicMODO);
+    unor4wifiService.addCharacteristic(unor4wifiCharacteristicDIRECT);
     // add the service
     BLE.addService(unor4wifiService);   
-
     // set the initial value for the characeristics
-    unor4wifiCharacteristic.writeValue(0);                
-
-    // start advertising       
-    BLE.advertise();                                             
+    unor4wifiCharacteristicMODO.writeValue(ble_Modo);
+    unor4wifiCharacteristicDIRECT.writeValue(ble_Direct);
+    // start advertising
+    BLE.advertise();
 
     Serial.println("/nsetup : BLE init OK");
 

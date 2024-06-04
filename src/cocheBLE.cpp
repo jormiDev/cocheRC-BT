@@ -14,21 +14,59 @@
 // Se ejecuta al contectarse al coche (una vez por conexcion)
 void conectadoBLE()
 {
-	// print the central's MAC address / name / uuid
-	Serial.print("loop  : Connected   BLE      MAC         : ");
-	Serial.println(central.address()); 
-	Serial.print("                             Dispositivo : ");
-	Serial.println(central.deviceName());
-	Serial.print("        Servicio             uuid        : ");
+	// print the central's device
+	Serial.println();
+	Serial.println("loop  : Connected   BLE    (Device)");
+	Serial.print("               MAC        : ");
+	Serial.println(central.address());
+	Serial.print("               name       : ");
+	Serial.print(central.deviceName());
+	Serial.println(central.localName());
+
+	// Services
+	Serial.println("          Servicio");
+	Serial.print("               uuid       : ");
 	Serial.println(unor4wifiService.uuid());
-	Serial.print("        Caracteristica       valueSize   : ");
-	Serial.println(unor4wifiCharacteristic.valueSize());
-	Serial.print("        Caracteristica       valueLength : ");
-	Serial.println(unor4wifiCharacteristic.valueLength());
-	Serial.println("");
-		
+
+	// caracteristicas
+	Serial.println("          Caracteristica");
+
+	Serial.print("(unor4wifiCharacteristicMODO)            uuid       : ");
+	Serial.println(unor4wifiCharacteristicMODO.uuid());
+	Serial.print("	valueSize   : ");
+	Serial.print(unor4wifiCharacteristicMODO.valueSize());
+	Serial.print("	propierties : ");
+	byte properties = unor4wifiCharacteristicMODO.properties();
+	Serial.print(properties);
+	if (properties & BLERead)  
+		Serial.print("  Read  ");
+	if (properties & (BLEWrite | BLEWriteWithoutResponse))
+		Serial.print("  Write  ");
+	if (properties & BLENotify)
+		Serial.print("  Notify  ");
+	Serial.println();
+	Serial.print("	value       : ");
+	Serial.println(unor4wifiCharacteristicMODO.value());
+
+	Serial.print("(unor4wifiCharacteristicDIRECT)          uuid       : ");
+	Serial.println(unor4wifiCharacteristicDIRECT.uuid());
+	Serial.print("	valueSize   : ");
+	Serial.print(unor4wifiCharacteristicDIRECT.valueSize());
+	Serial.print("	propierties : ");
+	properties = unor4wifiCharacteristicDIRECT.properties();
+	Serial.print(properties);
+	if (properties & BLERead)
+		Serial.print("  Read  ");
+	if (properties & (BLEWrite | BLEWriteWithoutResponse))
+		Serial.print("  Write  ");
+	if (properties & BLENotify)
+		Serial.print("  Notify  ");
+	Serial.println();
+	Serial.print("	value       : ");
+	Serial.println(unor4wifiCharacteristicDIRECT.value());
+
 	digitalWrite(ledPin, HIGH); // will turn the LED on
- }
+	}
 
  // Se ejecuta al desconectarse al coche (una sola vez)
  void desconectadoBLE(){
