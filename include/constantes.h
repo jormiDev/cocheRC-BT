@@ -85,7 +85,7 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define BLE_DEVICE_NAME     "UNOr4Wifi_Pradera"
 #define BLE_SERVICE         "2020"
 #define BLE_CARACT_MODO     "2021"
-#define BLE_CARACT_DIRECT   "2022"
+#define BLE_CARACT_DIREC    "2022"
 
 
 #define app_1               1       // modo auto

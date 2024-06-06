@@ -15,11 +15,11 @@ BLEDevice central;
 BLEService unor4wifiService(BLE_SERVICE); 
 // BlLE Characteristic 
 BLEIntCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify);
-BLEIntCharacteristic unor4wifiCharacteristicDIRECT(BLE_CARACT_DIRECT, BLERead | BLEWrite | BLENotify);
+BLEIntCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify);
 
 const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
 int ble_Modo = -1;
-int ble_Direct = -2;
+int ble_Direc = -2;
 
 
 
@@ -55,12 +55,12 @@ void setup(){
     BLE.setAdvertisedService(unor4wifiService);
     // add the characteristic
     unor4wifiService.addCharacteristic(unor4wifiCharacteristicMODO);
-    unor4wifiService.addCharacteristic(unor4wifiCharacteristicDIRECT);
+    unor4wifiService.addCharacteristic(unor4wifiCharacteristicDIREC);
     // add the service
     BLE.addService(unor4wifiService);   
     // set the initial value for the characeristics
     unor4wifiCharacteristicMODO.writeValue(ble_Modo);
-    unor4wifiCharacteristicDIRECT.writeValue(ble_Direct);
+    unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
     // start advertising
     BLE.advertise();
 
@@ -85,14 +85,22 @@ void loop()
     // if a central is connected to peripheral:
     if (central){
 
-        conectadoBLE();                 //  ejecuta una vez al conectar
+        conectadoBLE();                                 //  ejecuta una vez al conectar
 
         // while the central is still connected to peripheral:
         while (central.connected()){
            
-            loopConectado();            //  loop cuando conectdo
+            loopConectado();                            //  loop cuando conectdo
+
+            if( caracteristicaMODO() ){                 //  caracteristica MODO modificada
+                
+            }
+
+            if (caracteristicaDIREC()){                 //  caracteristica DIREC modificada
+                
+            }
         }   
 
-        desconectadoBLE();              //  ejecuta una vez al desconectar
+        desconectadoBLE();                              //  ejecuta una vez al desconectar
     }
 }

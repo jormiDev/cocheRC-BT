@@ -15,6 +15,15 @@ Commits
                 20240604
         datos de conexion BLE
 
+    ble 006     20240606
+        (lightBlue) escribir/suscripcion/leer caracteristicas
+
+
+---------
+
+        añadir quitar app dentro de modo
+        ver que hcer al desconectar - reset todo + desconecta
+        ver que hacer al quitar app - reset + desconecta
 
         (appMIT) probar botones 
             auto/man
