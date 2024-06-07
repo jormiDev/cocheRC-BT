@@ -97,5 +97,20 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define app_7               7       // drcha
 
 
+/*
+ *  Maquina de estados
+*/
+
+#define ME_INICIO               0       // estado inicial, desconecado ble + todo parado
+#define ME_CONECTADO_BLE        1       // INICIO + conectado a BLE
+#define ME_DESCONECTADO_BLE     2       // desconectado a BLE >> parar todo + estado buscar conexion
+#define ME_QUIT_APP             3       // >> parar todo + desconectar BLE
+#define ME_MODO_AUTO            4       // parar todo + analizar escenario + inicir conduccion automatica
+#define ME_MODO_MANUAL          5       // parar todo + esperar comnandos
+
+
+
+
+
 
 #endif	//__JORMAZ_CONSTANTES_H__

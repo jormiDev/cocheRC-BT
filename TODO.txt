@@ -18,6 +18,10 @@ Commits
     ble 006     20240606
         (lightBlue) escribir/suscripcion/leer caracteristicas
 
+    ble 007
+        añadir cocheMaqEstados
+        añadir estado en define
+        
 
 ---------
 

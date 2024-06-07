@@ -15,14 +15,13 @@ BLEDevice central;
 BLEService unor4wifiService(BLE_SERVICE); 
 // BlLE Characteristic 
 BLEIntCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify);
-BLEIntCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify);
-
-const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
 int ble_Modo = -1;
+BLEIntCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify);
 int ble_Direc = -2;
 
+const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
 
-
+int maquinaEstados;                 
 
 /*
  * ********   S E T U P   ***************
@@ -63,8 +62,9 @@ void setup(){
     unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
     // start advertising
     BLE.advertise();
-
     Serial.println("/nsetup : BLE init OK");
+
+    maquinaEstados = ME_INICIO;
 
     Serial.println("setup : fin");
     delay(5000);

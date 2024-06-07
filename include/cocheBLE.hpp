@@ -7,6 +7,7 @@
 #include <Wire.h>
 #include <SPI.h>
 #include "constantes.h"
+#include "cocheMaqEstados.hpp"
 
 /*
  * 	Objetos y variables
@@ -19,6 +20,7 @@ extern BLEIntCharacteristic unor4wifiCharacteristicDIREC;
 extern const int ledPin;
 extern int ble_Modo;
 extern int ble_Direc;
+extern int maquinaEstados;
 
 /*
  * 	* * * * * Funciones * * * * *
