@@ -13,11 +13,11 @@
 BLEDevice central;
 // Bluetooth® Low Energy LED Service
 BLEService unor4wifiService(BLE_SERVICE); 
-// BlLE Characteristic 
-BLEIntCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify);
-int ble_Modo = -1;
-BLEIntCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify);
-int ble_Direc = -2;
+// BlLE Characteristic
+BLEStringCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify, BLE_CARACT_MODO_LONG);
+String ble_Modo = "-1";
+BLEStringCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify, BLE_CARACT_DIREC_LONG);
+String ble_Direc = "-2";
 
 const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
 

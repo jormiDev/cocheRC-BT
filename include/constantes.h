@@ -22,7 +22,6 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
  *	#define PIN num_pin_conectado
  */
 
-
 #define PIN_IN1           	    2       //Pines L298n		obligatorio PWD=IN2+IN4
 #define PIN_IN2           	    3		//PWD	
 #define PIN_IN3           	    4
@@ -46,10 +45,8 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
  *		const tipo_constante nombre_constante = valor_constante;
  *		const float pi = 3.14;
  */
-
   
 const float diskslots = 20;  			    // Float for number of slots in encoder disk
-
 
 #define HCSR04_DELAY_MS     30              //para evitar fallo en multiples lecturas
 
@@ -81,23 +78,23 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
  *      MAC  UNO r4 Wifi Pradera      F4:12:FA:76:20:A9
  */
 
-#define BLE_LOCAL_NAME      "UNOr4Wifi_Pradera (Peripheral)"
-#define BLE_DEVICE_NAME     "UNOr4Wifi_Pradera"
-#define BLE_SERVICE         "2020"
-#define BLE_CARACT_MODO     "2021"
-#define BLE_CARACT_DIREC    "2022"
-
-
+#define BLE_LOCAL_NAME          "UNOr4Wifi_Pradera (Peripheral)"
+#define BLE_DEVICE_NAME         "UNOr4Wifi_Pradera"
+#define BLE_SERVICE             "2020"
+#define BLE_CARACT_MODO         "2021"
+#define BLE_CARACT_MODO_LONG    10
+#define BLE_CARACT_DIREC        "2022"
+#define BLE_CARACT_DIREC_LONG   10
 
 #define app_AUTO               1       // modo auto
 #define app_MANU               2       // modo manual
-#define app_QUIT               3    // quit app
-#define app_DISC               4  // desconectar
+#define app_QUIT               3       // quit app
+#define app_DISC               4       // desconectar
 
 #define app_STOP               3       // stop
-#define app_FWD               4       // fwd
-#define app_AFT              5       // aft
-#define app_IZQ               6       // izqda
+#define app_FWD                4       // fwd
+#define app_AFT                5       // aft
+#define app_IZQ                6       // izqda
 #define app_DCHA               7       // drcha
 
 

@@ -18,28 +18,27 @@ Commits
     ble 006     20240606
         (lightBlue) escribir/suscripcion/leer caracteristicas
 
-    ble 007
+    ble 007     20240608
         añadir cocheMaqEstados
         añadir estado en define
         
-
----------
-
+    ble008      20240610
         añadir quitar app dentro de modo
-        ver que hcer al desconectar - reset todo + desconecta
-        ver que hacer al quitar app - reset + desconecta
-
         (appMIT) probar botones 
             auto/man
             stop
             izq / drcha / fwd / aft
-
-
         (appMIT) envio comandos
-
         recibir comandos appMIT y mostarlos por terminal
+        crear maquina de estados y cambiar por los botones - maquina inicial
 
 
+---------
+
+        (appMIT) delay 1000ms en bt_disconect, bt_salir
+        ver que hcer al desconectar - reset todo + desconecta
+        ver que hacer al quitar app - reset + desconecta
+        escribir cadena y mostralos en appMIT (lb_recibido_valor)
 
 
 
