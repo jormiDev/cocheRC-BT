@@ -91,6 +91,10 @@ void conectadoBLE()
 
  // Codigo loop cuando DESconectado
  void loopDesconectado(){
+	ble_Modo = BLE_MODO_DEFAULT;
+	unor4wifiCharacteristicMODO.writeValue(ble_Modo);
+	ble_Direc = BLE_DIREC_DEFAULT;
+	unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
  }
 
 

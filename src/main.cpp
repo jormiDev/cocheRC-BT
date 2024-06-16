@@ -15,9 +15,9 @@ BLEDevice central;
 BLEService unor4wifiService(BLE_SERVICE); 
 // BlLE Characteristic
 BLEStringCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify, BLE_CARACT_MODO_LONG);
-String ble_Modo = "-1";
+String ble_Modo = BLE_MODO_DEFAULT;
 BLEStringCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify, BLE_CARACT_DIREC_LONG);
-String ble_Direc = "-2";
+String ble_Direc = BLE_DIREC_DEFAULT;
 
 const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
 
@@ -34,7 +34,9 @@ void setup(){
     Serial.begin(9600);
     while (!Serial)
         ;
-    Serial.println();
+    Serial.println("");
+    Serial.println("UNO r4 WIFI");
+    Serial.println("");
     Serial.println("setup : init");
 
     // set LED pin to output mode
@@ -62,13 +64,18 @@ void setup(){
     unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
     // start advertising
     BLE.advertise();
-    Serial.println("/nsetup : BLE init OK");
+    Serial.println("setup : BLE init OK");
 
+    // Maquina de estados
     maquinaEstados = ME_INICIO;
+    Serial.println("setup : maquina de estados  OK");
+
+
+
 
     Serial.println("setup : fin");
     delay(5000);
-    Serial.println("/nloop  : init");
+    Serial.println("loop  : init");
 
 }//	setup
 

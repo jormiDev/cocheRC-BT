@@ -86,6 +86,9 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define BLE_CARACT_DIREC        "2022"
 #define BLE_CARACT_DIREC_LONG   10
 
+#define BLE_MODO_DEFAULT        "-1"
+#define BLE_DIREC_DEFAULT       "-2"
+
 #define app_AUTO               1       // modo auto
 #define app_MANU               2       // modo manual
 #define app_QUIT               3       // quit app
@@ -96,7 +99,9 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define app_AFT                5       // aft
 #define app_IZQ                6       // izqda
 #define app_DCHA               7       // drcha
-
+#define app_90IZQ              8       // giro 90 grados a izquierda
+#define app_90DCHA             9       // giro 90 grados a derecha
+#define app_180                10      // giro 180 grados
 
 /*
  *  Maquina de estados
