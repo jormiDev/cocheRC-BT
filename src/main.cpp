@@ -16,10 +16,12 @@ BLEService unor4wifiService(BLE_SERVICE);
 // BlLE Characteristic
 BLEStringCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify, BLE_CARACT_MODO_LONG);
 String ble_Modo = BLE_MODO_DEFAULT;
+int ble_Modo_int = BLE_MODO_DEFAULT_INT;
 BLEStringCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify, BLE_CARACT_DIREC_LONG);
 String ble_Direc = BLE_DIREC_DEFAULT;
+int ble_Direc_int = BLE_MODO_DEFAULT_INT;
 
-const int ledPin = LED_BUILTIN;     // on  BLE conectado / off BLE desconectado
+const int ledPin = LED_BUILTIN; // on  BLE conectado / off BLE desconectado
 
 int maquinaEstados;                 
 
@@ -87,27 +89,72 @@ void setup(){
 
 void loop()
 {
+    maqEstados_INICIO();
     central = BLE.central();
 
     // if a central is connected to peripheral:
     if (central){
 
         conectadoBLE();                                 //  ejecuta una vez al conectar
+        maqEstados_CONECTADO_BLE();
 
         // while the central is still connected to peripheral:
-        while (central.connected()){
-           
+        while (central.connected())
+        {
+
             loopConectado();                            //  loop cuando conectdo
 
             if( caracteristicaMODO() ){                 //  caracteristica MODO modificada
-                
+                switch (ble_Modo_int){
+                case app_QUIT:
+                    maqEstados_QUIT_APP();
+                    break;
+                case app_MANU:
+                    maqEstados_MODO_MANUAL();
+                    break;
+                case app_AUTO:
+                    maqEstados_MODO_AUTO();
+                    break;
+                default:
+                    Serial.println("ble_Modo - valor deconocido");
+                    break;
+                }
             }
 
             if (caracteristicaDIREC()){                 //  caracteristica DIREC modificada
-                
+                switch (ble_Direc_int){
+                case app_STOP:
+                    manual_STOP();
+                    break;
+                case app_FWD:
+                    manual_FWD();
+                    break;
+                case app_AFT:
+                    manual_AFT();
+                    break;
+                case app_IZQ:
+                    manual_IZQ();
+                    break;
+                case app_DCHA:
+                    manual_DCHA();
+                    break;
+                case app_90IZQ:
+                    manual_90IZQ();
+                    break;
+                case app_90DCHA:
+                    manual_90DCHA();
+                    break;
+                case app_180:
+                    manual_180();
+                    break;        
+                default:
+                    Serial.println("ble_Direc - valor deconocido");
+                    break;
+                }
             }
-        }   
+        }
 
         desconectadoBLE();                              //  ejecuta una vez al desconectar
+        maqEstados_DESCONECTADO_BLE();
     }
 }

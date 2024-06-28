@@ -86,8 +86,12 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define BLE_CARACT_DIREC        "2022"
 #define BLE_CARACT_DIREC_LONG   10
 
+
+
 #define BLE_MODO_DEFAULT        "-1"
-#define BLE_DIREC_DEFAULT       "-2"
+#define BLE_MODO_DEFAULT_INT    -1
+#define BLE_DIREC_DEFAULT       "-2" 
+#define BLE_DIREC_DEFAULT_INT   -2
 
 #define app_AUTO               1       // modo auto
 #define app_MANU               2       // modo manual

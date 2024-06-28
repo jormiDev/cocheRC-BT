@@ -19,12 +19,39 @@ extern BLEStringCharacteristic unor4wifiCharacteristicMODO;
 extern BLEStringCharacteristic unor4wifiCharacteristicDIREC;
 extern const int ledPin;
 extern String ble_Modo;
+extern int ble_Modo_int;
 extern String ble_Direc;
+extern int ble_Direc_int;
 extern int maquinaEstados;
 
 /*
  * 	* * * * * Funciones * * * * *
  */
+
+// modo manual - app_STOP
+void manual_STOP(); 
+
+// modo manual - app_FWD
+void manual_FWD();
+
+// modo manual - app_AFT
+void manual_AFT();
+
+// modo manual - app_IZQ
+void manual_IZQ();
+
+// modo manual - app_DCHA
+void manual_DCHA();
+
+// modo manual - app_90IZQ
+void manual_90IZQ();
+
+// modo manual - app_90DCHA
+void manual_90DCHA();
+
+// modo manual - app_180
+void manual_180();
+
 
 //  0
 // estado inicial, desconecado ble + todo parado

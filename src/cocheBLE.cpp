@@ -84,7 +84,7 @@ void conectadoBLE()
  }
 
 
- // Codigo loop cuando conectado
+ // Codigo loop cuando conectado  
  void loopConectado(){
  }
 
@@ -105,7 +105,20 @@ bool caracteristicaMODO(){
 		Serial.print("loop  : MODO modificado      (lenght = ");
 		Serial.print(unor4wifiCharacteristicMODO.valueSize());
 		Serial.print(")    :  ");
-		Serial.println(ble_Modo);
+		Serial.print(ble_Modo);
+
+		if (ble_Modo == "app_AUTO")
+			ble_Modo_int = app_AUTO;
+		else if (ble_Modo == "app_MANU")
+			ble_Modo_int = app_MANU;
+		else if (ble_Modo == "app_QUIT")
+			ble_Modo_int = app_QUIT;
+		else if (ble_Modo == "app_DISC")
+			ble_Modo_int = app_DISC;
+
+		Serial.print("  -  ");
+		Serial.println(ble_Modo_int);		
+
 		return true;
 	}else
 		return false;
@@ -120,7 +133,28 @@ bool caracteristicaDIREC(){
 		Serial.print("loop  : DIRECION modificada     (lenght = ");
 		Serial.print(unor4wifiCharacteristicDIREC.valueSize());
 		Serial.print(")    :  ");
-		Serial.println(ble_Direc);
+		Serial.print(ble_Direc);
+
+		if (ble_Direc == "app_STOP")
+			ble_Direc_int = app_STOP;
+		else if (ble_Direc == "app_FWD")
+			ble_Direc_int = app_FWD;
+		else if (ble_Direc == "app_AFT")
+			ble_Direc_int = app_AFT;
+		else if (ble_Direc == "app_IZQ")
+			ble_Direc_int = app_IZQ;
+		else if (ble_Direc == "app_DCHA")
+			ble_Direc_int = app_DCHA;
+		else if (ble_Direc == "app_90IZQ")
+			ble_Direc_int = app_90IZQ;
+		else if (ble_Direc == "app_90DCHA")
+			ble_Direc_int = app_90DCHA;
+		else if (ble_Direc == "app_180")
+			ble_Direc_int = app_180;
+
+		Serial.print("  -  ");
+		Serial.println(ble_Direc_int);
+
 		return true;
 	}else
 		return false;

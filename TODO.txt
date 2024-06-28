@@ -32,20 +32,80 @@ ble 008      20240610
     recibir comandos appMIT y mostarlos por terminal
     crear maquina de estados y cambiar por los botones - maquina inicial
 
-ble 009     0240616
+ble 009     20240616
     (appMIT) agregar botone giro 90 grados y 180 grados
     (Draw.io) actualizar appMIT inventor
     (Draw.io) actualizar comandos BLE (en progreso)
+
+ble 010     20240628
+    añadir funciones para los botones de direcciones en cocheMaqEstados
+    añadir funciones para los modos en cocheMaqEstados
+    modificado caracteristicaMODO / caracteristicaDIREC par añadir vble int de modo y direc
+    actualizado TODOs
+
 
 
 
 
 ---------
-falta boton mantenido en las direcciones
-        (appMIT) delay 1000ms en bt_disconect, bt_salir
-        ver que hcer al desconectar - reset todo + desconecta
-        ver que hacer al quitar app - reset + desconecta
-        escribir cadena y mostralos en appMIT (lb_recibido_valor)
+
+        
+(appMIT) 
+    btn_Disconect
+        PENDIENTE       vble_status null,null, desconecado
+                        vble_envio a null, m
+                        modo a null, 
+                        bt_status a desconectado, 
+
+    PENDIENTE   delay 1000ms en bt_disconect, bt_salir
+    
+    PENDIENTE   falta boton mantenido en las direcciones    LONGCLICK
+
+    PENDIENTE   escribir cadena y mostralos en appMIT (lb_recibido_valor) 
+                funcione contestaBLE (cocheBLE) para envia cadena de tecto de central a peripheral (Arduinoa movil)
+
+
+
+
+cocheBLE
+    quitappBLE();           
+        PENDIENTE       ver que hacer al quitar app - reset + desconecta
+
+    loopConectado();        
+        PENDIENTE       
+
+    loopDesconectado();     
+        PENDIENTE       hacer Stop total de los motortes
+                        ver que hcer al desconectar - reset todo + desconecta
+
+
+cocheMaqEstados
+    maqEstados_INICIO()
+        PENDIENTE       hacer Stop total de los motortes
+
+    manual_STOP(); 
+        PENDIENTE       hacer Stop total de los motortes
+
+    manual_FWD();
+        PENDIENTE       avance
+
+    manual_AFT();
+        PENDIENTE       atras
+
+    manual_IZQ();
+        PENDIENTE       giro izqda 30  grados apro
+
+    manual_DCHA();
+        PENDIENTE       giro derecha 30  grados apro
+
+    manual_90IZQ();
+        PENDIENTE       giro 90 izqda
+
+    manual_90DCHA();
+        PENDIENTE       giro 90 derecha
+
+    manual_180();
+        PENDIENTE       giro 180 grados por el lado mas ancho izq/drcha
 
 
 
