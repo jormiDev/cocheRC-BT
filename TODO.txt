@@ -1,3 +1,10 @@
+Github
+
+CocheRC-BT / BLE-MIT-App
+
+
+
+
 Commits
 
 ble 002     20240510
@@ -33,7 +40,7 @@ ble 008      20240610
     crear maquina de estados y cambiar por los botones - maquina inicial
 
 ble 009     20240616
-    (appMIT) agregar botone giro 90 grados y 180 grados
+    (appMIT) agregar botones giro 90 grados y 180 grados
     (Draw.io) actualizar appMIT inventor
     (Draw.io) actualizar comandos BLE (en progreso)
 
@@ -43,6 +50,21 @@ ble 010     20240628
     modificado caracteristicaMODO / caracteristicaDIREC par añadir vble int de modo y direc
     actualizado TODOs
 
+ble 011     20240808
+    (appMIT) botones touchDown y touchUp  (checkpoint 2)
+    (draw.io) actualizar "app MIT Inventor"
+    (draw.io) actualizar "maq estados-appMIT"  
+                    - Scanning / Disconnect / quit
+                    - Auto / man
+                    - Stop
+                    - fwd
+                    - aft
+                    - izqda
+                    - drcha
+                    - 90 izqda
+                    - 90 drcha
+                    - 180 grados
+
 
 
 
@@ -51,15 +73,6 @@ ble 010     20240628
 
         
 (appMIT) 
-    btn_Disconect
-        PENDIENTE       vble_status null,null, desconecado
-                        vble_envio a null, m
-                        modo a null, 
-                        bt_status a desconectado, 
-
-    PENDIENTE   delay 1000ms en bt_disconect, bt_salir
-    
-    PENDIENTE   falta boton mantenido en las direcciones    LONGCLICK
 
     PENDIENTE   escribir cadena y mostralos en appMIT (lb_recibido_valor) 
                 funcione contestaBLE (cocheBLE) para envia cadena de tecto de central a peripheral (Arduinoa movil)

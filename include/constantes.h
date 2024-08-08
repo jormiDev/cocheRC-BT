@@ -45,30 +45,45 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
  *		const tipo_constante nombre_constante = valor_constante;
  *		const float pi = 3.14;
  */
-  
-const float diskslots = 20;  			    // Float for number of slots in encoder disk
 
-#define HCSR04_DELAY_MS     30              //para evitar fallo en multiples lecturas
+#define MOTOR_TIEMPO_PARO           200     // Delay para paso de movimiento a stop (ms)
+#define MOTOR_TIEMPO_90             350     // Delay tiempo de giro 90 grados
+#define MOTOR_TIEMPO_180            350     // Delay tiempo de giro 180 grados
 
-#define SERVO_DELAY_MS      1300             // delay (maximo) para posicionar el SG90
+#define VELOCIDAD_STOP              0       // velocidad 0
+#define VELOCIDAD_BAJA              50      // (MODO_MANU) velodidad para los giros
+#define VELOCIDAD_MEDIA             100     // (MODO_MANU) velocodad estandar 
+#define VELOCIDAD_INVERSA           -50      // (MODO MANU) motor inverso giro 180
 
-#define MOTOR_PARO			200			    //Delay paso movimiento a paro (ms)
-#define MOTOR_INVERSION		400			    //Delay paso inversión de marcha (ms)
 
-#define TIEMPO_PERIODO  	1000		    //tiempo en ms entre lecturas distancia
-#define DISTANCIA_33		25			    //Distancia segura, vel BAJA
-#define DISTANCIA_66		50			    //Distancia segura, vel MEDIA
-#define DISTANCIA_100		75			    //Distancia segura, vel MAXIMA
 
-#define VELOCIDAD_BAJA      80              // Velocidades 0..255
-#define VELOCIDAD_MEDIA     160
+
+/*
+//const float diskslots = 20;  			    // Float for number of slots in encoder disk
+
+//#define HCSR04_DELAY_MS     30              //para evitar fallo en multiples lecturas
+
+//#define SERVO_DELAY_MS      1300             // delay (maximo) para posicionar el SG90
+
+//#define MOTOR_INVERSION		400			    //Delay paso inversión de marcha (ms)
+
+//#define TIEMPO_PERIODO  	1000		    //tiempo en ms entre lecturas distancia
+//#define DISTANCIA_33		25			    //Distancia segura, vel BAJA
+//#define DISTANCIA_66		50			    //Distancia segura, vel MEDIA
+//#define DISTANCIA_100		75			    //Distancia segura, vel MAXIMA
+
+              // Velocidades 0..255
+
 #define VELOCIDAD_MAXIMA    240
 #define VELOCIDAD_GIRO      40
-#define VELOCIDAD_STOP      0
 
-#define GIRO_45             200             // Tiempo de maniobra
-#define GIRO_90             400
-#define GIRO_180            400
+
+//#define GIRO_45             200             // Tiempo de maniobra
+//#define GIRO_90             400
+//#define GIRO_180            400
+*/
+
+
 
 
 /*
@@ -86,13 +101,6 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define BLE_CARACT_DIREC        "2022"
 #define BLE_CARACT_DIREC_LONG   10
 
-
-
-#define BLE_MODO_DEFAULT        "-1"
-#define BLE_MODO_DEFAULT_INT    -1
-#define BLE_DIREC_DEFAULT       "-2" 
-#define BLE_DIREC_DEFAULT_INT   -2
-
 #define app_AUTO               1       // modo auto
 #define app_MANU               2       // modo manual
 #define app_QUIT               3       // quit app
@@ -106,6 +114,11 @@ const float diskslots = 20;  			    // Float for number of slots in encoder disk
 #define app_90IZQ              8       // giro 90 grados a izquierda
 #define app_90DCHA             9       // giro 90 grados a derecha
 #define app_180                10      // giro 180 grados
+
+#define BLE_MODO_DEFAULT "-1"           // defines de modo i direccion default
+#define BLE_MODO_DEFAULT_INT -1
+#define BLE_DIREC_DEFAULT "-2"
+#define BLE_DIREC_DEFAULT_INT -2
 
 /*
  *  Maquina de estados
