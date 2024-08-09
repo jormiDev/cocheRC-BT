@@ -1,66 +1,124 @@
-AutoRC
-----------------------
+Github
 
-fritzing 
-    esquema de conexiones
-                    20230509    Pines ok    2, 3, 4, 5, 6, 7, 8, 11, 12
+CocheRC-BT / BLE-MIT-App
 
 
 
-app.diagrams.net
-    maquina de estados
-    funciones interface-app/BT
-    app MIT inventor
+
+Commits
+
+ble 002     20240510
+    escanea / conecta / desconecta / quita app bley 
+    activa y desactiva botones al conectary deconectar ble
+    boton modo: cambia de modo y envia comando
+
+ble 003     20240520
+    cambio el codigo de main INO a main VisualC
+    probar de nuevo conexion y desconexion ble
+    cocheBLE.cpp - funciones cuando des/conecta y estando des/conectado
+
+ble 004
+ble 005     20240602
+            20240604
+    datos de conexion BLE
+
+ble 006     20240606
+    (lightBlue) escribir/suscripcion/leer caracteristicas
+
+ble 007     20240608
+    añadir cocheMaqEstados
+    añadir estado en define
+        
+ble 008      20240610
+    añadir quitar app dentro de modo
+    (appMIT) probar botones 
+        auto/man
+        stop
+        izq / drcha / fwd / aft
+    (appMIT) envio comandos
+    recibir comandos appMIT y mostarlos por terminal
+    crear maquina de estados y cambiar por los botones - maquina inicial
+
+ble 009     20240616
+    (appMIT) agregar botones giro 90 grados y 180 grados
+    (Draw.io) actualizar appMIT inventor
+    (Draw.io) actualizar comandos BLE (en progreso)
+
+ble 010     20240628
+    añadir funciones para los botones de direcciones en cocheMaqEstados
+    añadir funciones para los modos en cocheMaqEstados
+    modificado caracteristicaMODO / caracteristicaDIREC par añadir vble int de modo y direc
+    actualizado TODOs
+
+ble 011     20240808
+    (appMIT) botones touchDown y touchUp  (checkpoint 2)
+    (draw.io) actualizar "app MIT Inventor"
+    (draw.io) actualizar "maq estados-appMIT"  
+                    - Scanning / Disconnect / quit
+                    - Auto / man
+                    - Stop
+                    - fwd
+                    - aft
+                    - izqda
+                    - drcha
+                    - 90 izqda
+                    - 90 drcha
+                    - 180 grados
 
 
-CBasicoSensorDist
-    init   HCSR04
-                    20230509    ok init
-    init    SG90
-                    20230509    ok init
-    mover   SG90
-                    20230509    TestingServo01()
-                                TestingServo02()
-    medir   HCSR04 (frontal/todas)
-                    20230509    TestingUltrasonidos01()
-                                TestingUltrasonidos02()
-                                TestingUltrasonidos03()
-
-CBasicoMotor
-    init    motores
-                    20230512    ok init
-    init    encoder  D/I
-                    20230512    ok init
-    test avante D/I
-    test atras D/I
-    test encoder D/I
-    calculo giroD  45 grados
-    calculo giroI  45 grados
-    calculo giroD  90 grados
-    calculo giroI  90 grados
-    calculo giroD  135 grados
-    calculo giroI  135 grados
-    calculo giroD  180 grados
-    calculo giroI  180 grados
 
 
-logicaRC (evaluar varios supuestos)
-    logicaBasica();
-    logicaGiro();
-    maquina de estados
+
+---------
+
+        
+(appMIT) 
+
+    PENDIENTE   escribir cadena y mostralos en appMIT (lb_recibido_valor) 
+                funcione contestaBLE (cocheBLE) para envia cadena de tecto de central a peripheral (Arduinoa movil)
 
 
-CBasicoRemoto
-    init BT
-    init remoto
-    leer remoto
 
-App MIT inventor
-    crear App
-    conectar/desconectar BT
-    modo manula/auto
-    envio/recepcion comandos
 
+cocheBLE
+    quitappBLE();           
+        PENDIENTE       ver que hacer al quitar app - reset + desconecta
+
+    loopConectado();        
+        PENDIENTE       
+
+    loopDesconectado();     
+        PENDIENTE       hacer Stop total de los motortes
+                        ver que hcer al desconectar - reset todo + desconecta
+
+
+cocheMaqEstados
+    maqEstados_INICIO()
+        PENDIENTE       hacer Stop total de los motortes
+
+    manual_STOP(); 
+        PENDIENTE       hacer Stop total de los motortes
+
+    manual_FWD();
+        PENDIENTE       avance
+
+    manual_AFT();
+        PENDIENTE       atras
+
+    manual_IZQ();
+        PENDIENTE       giro izqda 30  grados apro
+
+    manual_DCHA();
+        PENDIENTE       giro derecha 30  grados apro
+
+    manual_90IZQ();
+        PENDIENTE       giro 90 izqda
+
+    manual_90DCHA();
+        PENDIENTE       giro 90 derecha
+
+    manual_180();
+        PENDIENTE       giro 180 grados por el lado mas ancho izq/drcha
 
 
 

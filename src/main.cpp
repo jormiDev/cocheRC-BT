@@ -1,73 +1,85 @@
-#include <Arduino.h>
 
-#include <jormazLib.h>
-#include "TimerOne.h"
-#include "HCSR04.h"
-#include "Servo.h"
+
+#include <Arduino.h>
+#include <ArduinoBLE.h>
+#include "WiFiS3.h"
+#include <Wire.h>
+#include <SPI.h>
 
 #include <constantes.h>
-#include "CBasicoMotor.hpp"
-#include "CBasicoRemoto.hpp"
-#include "CBasicoSensorDist.hpp"
-#include "logicaRC.hpp"
+#include "cocheBLE.hpp"
 
- 
-/*
- * Objetos y variables
- */
+// listen for Bluetooth® Low Energy peripherals to connect:
+BLEDevice central;
+// Bluetooth® Low Energy LED Service
+BLEService unor4wifiService(BLE_SERVICE); 
+// BlLE Characteristic
+BLEStringCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify, BLE_CARACT_MODO_LONG);
+String ble_Modo = BLE_MODO_DEFAULT;
+int ble_Modo_int = BLE_MODO_DEFAULT_INT;
+BLEStringCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead | BLEWrite | BLENotify, BLE_CARACT_DIREC_LONG);
+String ble_Direc = BLE_DIREC_DEFAULT;
+int ble_Direc_int = BLE_MODO_DEFAULT_INT;
 
+const int ledPin = LED_BUILTIN; // on  BLE conectado / off BLE desconectado
 
-jormiDepura mensaje;
-int maquinaEstados;
-
-// CBasicoMotor.hpp
-volatile unsigned int pulsosDerecha;                        // Contador pulsos lado derecho
-volatile unsigned int pulsosIzquierda;                      // Contador pulsos lado izquierdo
-float rpmDerecha;                                           // RPM motor derecho
-float rpmIzquierda;                                         // RPM motor izquierdo
-jormiL293D driverMotor(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4); // Motor coche
-int velDeseadaDerecha;                                      // Valor deseado del motor derecho -255..0..255
-int velActualDerecha;                                       // Valor actual motor derecho -255..0..255
-int velDeseadaIzquierda;                                    // Valor deseado del motor izquierdo -255..0..255
-int velActualIzquierda;                                     // Valor actual motor izquierdo -255..0..255
-
-// CBasicoSensorDist.hpp
-int distValores[5];           // Array de distancias 0 .. 180
-float tiempoActual;           // tiempo actual
-float tiempoPrevio;           // tiempo de la ultima lectura sensor distancia
-HCSR04 distHCSR04 (PIN_HCSR04_TRIGGER, PIN_HCSR04_ECHO);      //HC-SR04
-Servo myservo;                //SG90
-
-// CBasicoRemoto.hpp
-char comando;                 // Comando leido de la appMIT inventor
-
-// CBasicoTes
+int maquinaEstados;                 
 
 /*
  * ********   S E T U P   ***************
  */
 
-void setup()
-{
 
-  Serial.begin(9600);
+void setup(){
+    
+    // Serial init
+    Serial.begin(9600);
+    while (!Serial)
+        ;
+    Serial.println("");
+    Serial.println("UNO r4 WIFI");
+    Serial.println("");
+    Serial.println("setup : init");
 
-  maquinaEstados = 0;
+    // set LED pin to output mode
+    pinMode(ledPin, OUTPUT);
 
-  distanciaSetup();   // HC-SR04 + SG90
-  motorSetup();       // motores
- // remotoSetup();
+    // begin initialization
+    if (!BLE.begin())
+    {
+        Serial.println("setup : starting Bluetooth® Low Energy module failed!");
+        while (1)
+            ;
+    }
+
+    // set advertised local name and service UUID:
+    BLE.setLocalName(BLE_LOCAL_NAME);                           
+    BLE.setDeviceName(BLE_DEVICE_NAME);
+    BLE.setAdvertisedService(unor4wifiService);
+    // add the characteristic
+    unor4wifiService.addCharacteristic(unor4wifiCharacteristicMODO);
+    unor4wifiService.addCharacteristic(unor4wifiCharacteristicDIREC);
+    // add the service
+    BLE.addService(unor4wifiService);   
+    // set the initial value for the characeristics
+    unor4wifiCharacteristicMODO.writeValue(ble_Modo);
+    unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
+    // start advertising
+    BLE.advertise();
+    Serial.println("setup : BLE init OK");
+
+    // Maquina de estados
+    maquinaEstados = ME_INICIO;
+    Serial.println("setup : maquina de estados  OK");
 
 
 
 
-  tiempoPrevio = millis();
-  tiempoActual = tiempoPrevio;
+    Serial.println("setup : fin");
+    delay(5000);
+    Serial.println("loop  : init");
 
-  // Fin setup
-  mensaje.texto(" loop ");
-  delay(1000);
-}
+}//	setup
 
 
 
@@ -77,77 +89,72 @@ void setup()
 
 void loop()
 {
+    maqEstados_INICIO();
+    central = BLE.central();
 
-  mensaje.texto("inicio loop");
+    // if a central is connected to peripheral:
+    if (central){
 
-  tiempoActual = millis();                          // tiempo del sistema
-  delay(2000);
+        conectadoBLE();                                 //  ejecuta una vez al conectar
+        maqEstados_CONECTADO_BLE();
 
-  //comando = remotoLeer();                           // leer el buffer BT y almacenar el comando
+        // while the central is still connected to peripheral:
+        while (central.connected())
+        {
 
+            loopConectado();                            //  loop cuando conectdo
 
-  // switch (maquinaEstados)
-  // /*
-  //   0     tiempo transcurrido <= TIEMPO_PERIODO
-  //   1     tiempo transcurrido > TIEMPO_PERIODO        
-  //   2     evaluar velocidad según distancia frontal
-  //   3     velocidad > 0
-  //   4     velocidad = 0 (STOP)
+            if( caracteristicaMODO() ){                 //  caracteristica MODO modificada
+                switch (ble_Modo_int){
+                case app_QUIT:
+                    maqEstados_QUIT_APP();
+                    break;
+                case app_MANU:
+                    maqEstados_MODO_MANUAL();
+                    break;
+                case app_AUTO:
+                    maqEstados_MODO_AUTO();
+                    break;
+                default:
+                    Serial.println("ble_Modo - valor deconocido");
+                    break;
+                }
+            }
 
+            if (caracteristicaDIREC()){                 //  caracteristica DIREC modificada
+                switch (ble_Direc_int){
+                case app_STOP:
+                    manual_STOP();
+                    break;
+                case app_FWD:
+                    manual_FWD();
+                    break;
+                case app_AFT:
+                    manual_AFT();
+                    break;
+                case app_IZQ:
+                    manual_IZQ();
+                    break;
+                case app_DCHA:
+                    manual_DCHA();
+                    break;
+                case app_90IZQ:
+                    manual_90IZQ();
+                    break;
+                case app_90DCHA:
+                    manual_90DCHA();
+                    break;
+                case app_180:
+                    manual_180();
+                    break;        
+                default:
+                    Serial.println("ble_Direc - valor deconocido");
+                    break;
+                }
+            }
+        }
 
-  // */
-
-
-  // {
-  // case 0:
-  //   // Mira si ha transcurrido "tiempoPeriodo"		->	1
-  //   if ((tiempoActual - tiempoPrevio) > TIEMPO_PERIODO)
-  //   {
-  //     maquinaEstados = 1;
-  //     tiempoPrevio = tiempoActual;
-  //   }
-  //   break;
-
-  // case 1:
-  //   // Medir distancia (frontal)			-> 	2
-  //   distanciaUpdate();
-  //   maquinaEstados = 2;
-  //   break;
-
-  // case 2:
-  //   // Mantener dirección		-> 	3
-  //   // Cambio de dirección		->	4
-  //   maquinaEstados = logicaBasica();
-  //   break;
-
-  // case 3:
-  //   // Actualizar motores		-> 	0
-  //   motorSerial();
-  //   motorUpdate();
-  //   maquinaEstados = 0;
-  //   break;
-
-  // case 4:
-  //   // Calcular nueva dirección
-  //   // Aplicar giro				->	5
-  //   distanciaUpdate();
-  //   motorGiro(logicaGiro());
-  //   maquinaEstados = 5;
-  //   break;
-
-  // case 5:
-  //   // Empezar avance lento		->	0
-  //   velDeseadaDerecha = VELOCIDAD_BAJA;
-  //   velDeseadaIzquierda = VELOCIDAD_BAJA;
-  //   motorSerial();
-  //   motorUpdate();
-  //   maquinaEstados = 0;
-  //   break;
-
-  // default:
-  //   maquinaEstados = 0;
-  //   break;
-
-  // } // maquinaEstados
-  
-} // loop
+        desconectadoBLE();                              //  ejecuta una vez al desconectar
+        maqEstados_DESCONECTADO_BLE();
+    }
+}
