@@ -5,9 +5,12 @@
 #include "WiFiS3.h"
 #include <Wire.h>
 #include <SPI.h>
+#include "HCSR04.h"
 
 #include <constantes.h>
 #include "cocheBLE.hpp"
+#include "coche_HC-SR04.hpp"
+
 
 // listen for Bluetooth® Low Energy peripherals to connect:
 BLEDevice central;
@@ -24,6 +27,10 @@ int ble_Direc_int = BLE_MODO_DEFAULT_INT;
 const int ledPin = LED_BUILTIN; // on  BLE conectado / off BLE desconectado
 
 int maquinaEstados;                 
+
+// coche_HC-RS04
+HCSR04 distHCSR04(PIN_HCSR04_TRIGGER, PIN_HCSR04_ECHO);
+float sensorDist;
 
 /*
  * ********   S E T U P   ***************
@@ -72,8 +79,8 @@ void setup(){
     maquinaEstados = ME_INICIO;
     Serial.println("setup : maquina de estados  OK");
 
-
-
+    // coche_HC-RS04
+    //ultrasonidos_setup();
 
     Serial.println("setup : fin");
     delay(5000);

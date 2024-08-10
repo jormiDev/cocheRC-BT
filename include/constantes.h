@@ -32,9 +32,6 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
 #define PIN_HCSR04_ECHO         7       // Pines HC-RS04
 #define PIN_HCSR04_TRIGGER      8
 
-#define PIN_BT_RX               9       //Pines BT
-#define PIN_BT_TX               10
-
 #define PIN_ENC_DCHO     	    11     //Pin encoder rotación lado derecho
 #define PIN_ENC_IZQ      	    12     //Pin encoder rotación lado izquierdo
 
