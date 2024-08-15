@@ -22,10 +22,10 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
  *	#define PIN num_pin_conectado
  */
 
-#define PIN_IN1           	    2       //Pines L298n		obligatorio PWD=IN2+IN4
-#define PIN_IN2           	    3		//PWD	
+#define PIN_IN1           	    2       // Pines L298n		obligatorio PWD=IN2+IN4
+#define PIN_IN2           	    3		// PWD	
 #define PIN_IN3           	    4
-#define PIN_IN4           	    5       //PWD 
+#define PIN_IN4           	    5       // PWD 
 
 #define PIN_SERVO               6       // PWM      SG90
 
@@ -50,17 +50,15 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
 #define VELOCIDAD_STOP              0       // velocidad 0
 #define VELOCIDAD_BAJA              50      // (MODO_MANU) velodidad para los giros
 #define VELOCIDAD_MEDIA             100     // (MODO_MANU) velocodad estandar 
-#define VELOCIDAD_INVERSA           -50      // (MODO MANU) motor inverso giro 180
+#define VELOCIDAD_INVERSA           -50     // (MODO MANU) motor inverso giro 180
 
+#define HCSR04_DELAY_MS             30      // HC-SR04 - para evitar fallo en multiples lecturas
 
+#define SERVO_DELAY_MS              1300    // SG90 - delay (maximo) para posicionar el SG90
 
+#define HUECOS_ENCODER              20      // Huecos en el disco de los encoders
 
 /*
-//const float diskslots = 20;  			    // Float for number of slots in encoder disk
-
-//#define HCSR04_DELAY_MS     30              //para evitar fallo en multiples lecturas
-
-//#define SERVO_DELAY_MS      1300             // delay (maximo) para posicionar el SG90
 
 //#define MOTOR_INVERSION		400			    //Delay paso inversión de marcha (ms)
 
