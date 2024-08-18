@@ -84,7 +84,15 @@ sensores 002    20240815
     test coche_SG90
     crear coche_Encoders
 
+sensores 003    20240818
+    coche_Encoders - interrupciones IRQ
+    coche_Encoders - timer
+    IRQ timer con librería inflop/Countimer
+    test coche_Encoders
 
+Github -  merge  rama CocheRC-BT / sensores dentro de main
+
+Github - crear rama motorDC
 
 
 

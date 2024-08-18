@@ -7,7 +7,7 @@
 #include <SPI.h>
 #include "HCSR04.h"
 #include "Servo.h"
-#include "TimerInterrupt.h"
+#include "Countimer.h"
 
 #include <constantes.h>
 #include "cocheBLE.hpp"
@@ -41,6 +41,7 @@ Servo myservo;
 int posicionServo; // 0 .. 180
 
 // coche_Encoders
+Countimer miTimer;
 volatile unsigned int pulsosDerecha;   // Contador pulsos lado derecho
 volatile unsigned int pulsosIzquierda; // Contador pulsos lado izquierdo
 float rpmDerecha;                      // RPM motor derecho
@@ -126,6 +127,10 @@ void setup(){
 
 void loop()
 {
+    // Arrancar IRQ Timer
+    miTimer.run();
+    miTimer.start();
+
     /*
     TEST
     */
@@ -134,6 +139,8 @@ void loop()
     //servo_test01();
     //servo_test02();
     //servo_test03();
+    //encoders_test01();
+    //encoders_test02();
 
     /*
     maqEstados_INICIO();

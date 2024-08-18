@@ -13,12 +13,14 @@ void encoders_setup()
     rpmDerecha = 0;
     rpmIzquierda = 0;
     rpmDerechaObjetivo = 0;
-    rpmIzquierdaObjetiv = 0;
+    rpmIzquierdaObjetivo = 0;
 
-    Timer1.initialize(1000000);                                                      // set timer for 1sec
-    attachInterrupt(digitalPinToInterrupt(PIN_ENC_IZQ), ISR_CountIzquierda, RISING); // Increase speed sensor pin goes High
-    attachInterrupt(digitalPinToInterrupt(PIN_ENC_DCHO), ISR_CountDerecha, RISING);  // Increase speed sensor pin goes High
-    Timer1.attachInterrupt(ISR_timerone);                                            // Enable the timer
+    // init shaft encoder
+    attachInterrupt(digitalPinToInterrupt(2), ISR_CountDerecha, RISING);
+    attachInterrupt(digitalPinToInterrupt(3), ISR_CountIzquierda, RISING);
+
+    // init IRQ timer
+    miTimer.setInterval(ISR_timerone, 5000);
 }
 
 /*
@@ -38,16 +40,16 @@ void ISR_CountIzquierda()
 }
 
 /*
-TimerOne ISR (Se llama cada segundo y recalcula RPMs)
+TimerOne ISR (Se llama cada 5 segundo y recalcula RPMs)
 */
 void ISR_timerone()
 {
-    Timer1.detachInterrupt();                                   // Stop the timer
-    rpmDerecha = (pulsosDerecha / HUECOS_ENCODER) * 60.00;      // calculate RPM
+    miTimer.pause();                                            // Stop the timer
+    rpmDerecha = (pulsosDerecha * 12) / HUECOS_ENCODER;         // calculate RPM
     pulsosDerecha = 0;                                          //  reset counter to zero
-    rpmIzquierda = (pulsosIzquierda / HUECOS_ENCODER) * 60.00;  // calculate RPM
-    pulsosIzquierda = 0;                                        //  reset counter to zero
-    Timer1.attachInterrupt(ISR_timerone);                       // Enable the timer
+    rpmIzquierda = (pulsosIzquierda * 12) / HUECOS_ENCODER; 
+    pulsosIzquierda = 0;                                  
+    miTimer.restart();                                          // Enable the timer
 }
 
 /*
@@ -60,44 +62,58 @@ void encoders_info(){
     Serial.print(rpmDerechaObjetivo);
     Serial.println(" )");
 
-    Serial.print("Encoder Drcho \t rpms Actuales  ( ");
+    Serial.print("Encoder Izqdo \t rpms Actuales  ( ");
     Serial.print(rpmIzquierda, 5);
     Serial.print(" ) \t rpms Objetivo ( ");
     Serial.print(rpmIzquierdaObjetivo);
     Serial.println(" )");
 }
 
-
 /*
 Test 01 Encoders
-
+test shaft encoder DRCHA
 */
 void encoders_test01()
 {
-    delay(5000);
-    Serial.println("Test 01 : Encoders");
+    delay(250);
+    //Serial.println("Test 01 : Encoders");
 
-
+    Serial.print("rpm / counter          ");
+    Serial.print(rpmDerecha,5);
+    Serial.print("          ");
+    Serial.println(pulsosDerecha, 5);
 }
 
 /*
 Test 02 Encoders
-
+test shaft encoder IZQDA
 */
 void encoders_test02()
 {
-    delay(5000);
-    Serial.println("Test 02 : Encoders");
+    delay(250);
+    //Serial.println("Test 02 : Encoders");
+    
+    Serial.print("rpm / counter          ");
+    Serial.print(rpmIzquierda, 5);
+    Serial.print("          ");
+    Serial.println(pulsosIzquierda, 5);
 }
 
 /*
 Test 03 Encoders
-
+test shaft encoder IZQDA + DRCHA
 */
 void encoders_test03()
 {
-    delay(5000);
-    Serial.println("Test 03 : Encoders");
+    delay(250);
+    //Serial.println("Test 03 : Encoders");
 
-
+    Serial.print("DRCHA - rpm / counter          ");
+    Serial.print(rpmDerecha, 5);
+    Serial.print("          ");
+    Serial.print(pulsosDerecha, 5);
+    Serial.print("       IZQDA         ");
+    Serial.print(rpmIzquierda, 5);
+    Serial.print("          ");
+    Serial.println(pulsosIzquierda, 5);
 }
