@@ -5,9 +5,16 @@
 #include "WiFiS3.h"
 #include <Wire.h>
 #include <SPI.h>
+#include "HCSR04.h"
+#include "Servo.h"
+#include "Countimer.h"
 
 #include <constantes.h>
 #include "cocheBLE.hpp"
+#include "coche_HC-SR04.hpp"
+#include "coche_SG90.hpp"
+#include "coche_Encoders.hpp"
+
 
 // listen for Bluetooth® Low Energy peripherals to connect:
 BLEDevice central;
@@ -25,6 +32,23 @@ const int ledPin = LED_BUILTIN; // on  BLE conectado / off BLE desconectado
 
 int maquinaEstados;                 
 
+// coche_HC-RS04
+HCSR04 distHCSR04(PIN_HCSR04_TRIGGER, PIN_HCSR04_ECHO);
+float sensorDist;
+
+// coche_SG90
+Servo myservo; 
+int posicionServo; // 0 .. 180
+
+// coche_Encoders
+Countimer miTimer;
+volatile unsigned int pulsosDerecha;   // Contador pulsos lado derecho
+volatile unsigned int pulsosIzquierda; // Contador pulsos lado izquierdo
+float rpmDerecha;                      // RPM motor derecho
+float rpmIzquierda;                    // RPM motor izquierdo
+float rpmDerechaObjetivo;              // RPM motor derecho Deseadas
+float rpmIzquierdaObjetivo;            // RPM motor izquierdo Deseadas
+
 /*
  * ********   S E T U P   ***************
  */
@@ -36,6 +60,8 @@ void setup(){
     Serial.begin(9600);
     while (!Serial)
         ;
+    delay(5000);
+
     Serial.println("");
     Serial.println("UNO r4 WIFI");
     Serial.println("");
@@ -66,17 +92,29 @@ void setup(){
     unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
     // start advertising
     BLE.advertise();
-    Serial.println("setup : BLE init OK");
+    Serial.println("setup : BLE            init OK");
 
     // Maquina de estados
     maquinaEstados = ME_INICIO;
     Serial.println("setup : maquina de estados  OK");
 
+    // coche_HC-RS04
+    ultrasonidos_setup();
+    Serial.println("setup : HC-SR04        init OK");
+
+    // coche_SG90
+    servo_setup();
+    Serial.println("setup : SG90           init OK");
+
+    // coche_Encoders
+    encoders_setup();
+    Serial.println("setup : encoders       init OK");
 
 
-
+    // fin setup
     Serial.println("setup : fin");
     delay(5000);
+    Serial.println("");
     Serial.println("loop  : init");
 
 }//	setup
@@ -89,6 +127,22 @@ void setup(){
 
 void loop()
 {
+    // Arrancar IRQ Timer
+    miTimer.run();
+    miTimer.start();
+
+    /*
+    TEST
+    */
+    //ultrasonidos_test01();
+    //ultrasonidos_test02();
+    //servo_test01();
+    //servo_test02();
+    //servo_test03();
+    //encoders_test01();
+    //encoders_test02();
+
+    /*
     maqEstados_INICIO();
     central = BLE.central();
 
@@ -146,7 +200,7 @@ void loop()
                     break;
                 case app_180:
                     manual_180();
-                    break;        
+                    break;
                 default:
                     Serial.println("ble_Direc - valor deconocido");
                     break;
@@ -156,5 +210,5 @@ void loop()
 
         desconectadoBLE();                              //  ejecuta una vez al desconectar
         maqEstados_DESCONECTADO_BLE();
-    }
+    }*/
 }

@@ -65,6 +65,34 @@ ble 011     20240808
                     - 90 drcha
                     - 180 grados
 
+Github -  merge  rama CocheRC-BT / BLE-MIT-App dentro de main
+
+Github - crear rama sensores
+
+sensores 001    20240810
+    (fritz) portar esquema a UNO r4 Wifi
+    recablear coche y conectar pines
+        2, 3, 4, 5  motores DC 
+        6           SG90
+        7, 8        HC-RS04
+        11, 12      Encoders
+    crear coche_HC-SR04.cpp
+    crear coche_SG90.cpp
+
+sensores 002    20240815
+    test coche_HC-RS04 
+    test coche_SG90
+    crear coche_Encoders
+
+sensores 003    20240818
+    coche_Encoders - interrupciones IRQ
+    coche_Encoders - timer
+    IRQ timer con librería inflop/Countimer
+    test coche_Encoders
+
+Github -  merge  rama CocheRC-BT / sensores dentro de main
+
+Github - crear rama motorDC
 
 
 
