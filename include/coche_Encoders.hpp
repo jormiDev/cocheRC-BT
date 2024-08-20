@@ -17,8 +17,6 @@ extern float rpmDerecha;
 extern float rpmIzquierda;
 extern volatile unsigned int pulsosDerecha;
 extern volatile unsigned int pulsosIzquierda;
-extern float rpmDerechaObjetivo;   
-extern float rpmIzquierdaObjetivo; 
 
 /*
 Funciones

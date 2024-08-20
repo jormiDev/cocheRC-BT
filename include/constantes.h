@@ -22,18 +22,22 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
  *	#define PIN num_pin_conectado
  */
 
-#define PIN_IN1           	    2       // Pines L298n		obligatorio PWD=IN2+IN4
-#define PIN_IN2           	    3		// PWD	
+#define PIN_ENC_DCHO     	    2     //Pin encoder rotación lado derecho
+#define PIN_ENC_IZQ      	    3     //Pin encoder rotación lado izquierdo
+
+
+#define PIN_ENA                 2       // PWD - motorA
+#define PIN_IN1           	    2       
+#define PIN_IN2           	    3
+
+#define PIN_ENB                 2       // PWD - motorB
 #define PIN_IN3           	    4
-#define PIN_IN4           	    5       // PWD 
+#define PIN_IN4           	    5       
 
-#define PIN_SERVO               6       // PWM      SG90
+#define PIN_SERVO               9       // PWM      SG90
 
-#define PIN_HCSR04_ECHO         7       // Pines HC-RS04
-#define PIN_HCSR04_TRIGGER      8
-
-#define PIN_ENC_DCHO     	    11     //Pin encoder rotación lado derecho
-#define PIN_ENC_IZQ      	    12     //Pin encoder rotación lado izquierdo
+#define PIN_HCSR04_ECHO         11      
+#define PIN_HCSR04_TRIGGER      12
 
 
 /*

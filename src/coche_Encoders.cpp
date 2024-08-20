@@ -12,8 +12,6 @@ void encoders_setup()
     pulsosIzquierda = 0;
     rpmDerecha = 0;
     rpmIzquierda = 0;
-    rpmDerechaObjetivo = 0;
-    rpmIzquierdaObjetivo = 0;
 
     // init shaft encoder
     attachInterrupt(digitalPinToInterrupt(2), ISR_CountDerecha, RISING);
@@ -58,14 +56,10 @@ Info de velocidades por puerto serial
 void encoders_info(){
     Serial.print("Encoder Drcho \t rpms Actuales  ( ");
     Serial.print(rpmDerecha, 5);
-    Serial.print(" ) \t rpms Objetivo ( ");
-    Serial.print(rpmDerechaObjetivo);
     Serial.println(" )");
 
     Serial.print("Encoder Izqdo \t rpms Actuales  ( ");
     Serial.print(rpmIzquierda, 5);
-    Serial.print(" ) \t rpms Objetivo ( ");
-    Serial.print(rpmIzquierdaObjetivo);
     Serial.println(" )");
 }
 

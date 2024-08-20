@@ -14,6 +14,7 @@
 #include "coche_HC-SR04.hpp"
 #include "coche_SG90.hpp"
 #include "coche_Encoders.hpp"
+#include "coche_motorDC.hpp"
 
 
 // listen for Bluetooth® Low Energy peripherals to connect:
@@ -46,8 +47,10 @@ volatile unsigned int pulsosDerecha;   // Contador pulsos lado derecho
 volatile unsigned int pulsosIzquierda; // Contador pulsos lado izquierdo
 float rpmDerecha;                      // RPM motor derecho
 float rpmIzquierda;                    // RPM motor izquierdo
-float rpmDerechaObjetivo;              // RPM motor derecho Deseadas
-float rpmIzquierdaObjetivo;            // RPM motor izquierdo Deseadas
+
+// coche_motorDC
+byte motorA_ENA;                         // Velocidad motorA 0.255
+byte motorB_ENB;                         // Velocidad motorB 0..255
 
 /*
  * ********   S E T U P   ***************
@@ -110,6 +113,9 @@ void setup(){
     encoders_setup();
     Serial.println("setup : encoders       init OK");
 
+    //coche_motorDC
+    motorDC_setup();
+    Serial.println("setup : motorDC        init OK");
 
     // fin setup
     Serial.println("setup : fin");
