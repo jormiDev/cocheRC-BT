@@ -14,7 +14,6 @@
 #include "coche_HC-SR04.hpp"
 #include "coche_SG90.hpp"
 #include "coche_Encoders.hpp"
-#include "coche_motorDC.hpp"
 
 
 // listen for Bluetooth® Low Energy peripherals to connect:
@@ -47,10 +46,8 @@ volatile unsigned int pulsosDerecha;   // Contador pulsos lado derecho
 volatile unsigned int pulsosIzquierda; // Contador pulsos lado izquierdo
 float rpmDerecha;                      // RPM motor derecho
 float rpmIzquierda;                    // RPM motor izquierdo
-
-// coche_motorDC
-byte motorA_ENA;                         // Velocidad motorA 0.255
-byte motorB_ENB;                         // Velocidad motorB 0..255
+float rpmDerechaObjetivo;              // RPM motor derecho Deseadas
+float rpmIzquierdaObjetivo;            // RPM motor izquierdo Deseadas
 
 /*
  * ********   S E T U P   ***************
@@ -113,9 +110,6 @@ void setup(){
     encoders_setup();
     Serial.println("setup : encoders       init OK");
 
-    //coche_motorDC
-    motorDC_setup();
-    Serial.println("setup : motorDC        init OK");
 
     // fin setup
     Serial.println("setup : fin");
@@ -137,6 +131,12 @@ void loop()
     miTimer.run();
     miTimer.start();
 
+	// Init maquina de estados
+    maqEstados_INICIO();
+
+	// Conexion BLEDevice
+    central = BLE.central();
+	
     /*
     TEST
     */
@@ -148,10 +148,8 @@ void loop()
     //encoders_test01();
     //encoders_test02();
 
-    /*
-    maqEstados_INICIO();
-    central = BLE.central();
 
+	// loop
     // if a central is connected to peripheral:
     if (central){
 
@@ -162,9 +160,10 @@ void loop()
         while (central.connected())
         {
 
-            loopConectado();                            //  loop cuando conectdo
+            loopConectado();                            //  loop cuando conectado
 
-            if( caracteristicaMODO() ){                 //  caracteristica MODO modificada
+			//  caracteristica MODO modificada
+            if( caracteristicaMODO() ){                 
                 switch (ble_Modo_int){
                 case app_QUIT:
                     maqEstados_QUIT_APP();
@@ -175,13 +174,24 @@ void loop()
                 case app_AUTO:
                     maqEstados_MODO_AUTO();
                     break;
+					case app_DISC:
+                    maqEstados_DESCONECTADO_BLE();
+                    break;
                 default:
                     Serial.println("ble_Modo - valor deconocido");
                     break;
                 }
             }
 
-            if (caracteristicaDIREC()){                 //  caracteristica DIREC modificada
+			//  caracteristica DIREC modificada - modo AUTO
+            if (caracteristicaDIREC() && ble_Modo_int == app_AUTO){                 
+                if(ble_Direc_int == app_STOP){
+                    manual_STOP();
+                }
+			}
+
+			//  caracteristica DIREC modificada - modo MANUAL
+            else if (caracteristicaDIREC() && ble_Modo_int == app_MANU){                 
                 switch (ble_Direc_int){
                 case app_STOP:
                     manual_STOP();
@@ -212,9 +222,14 @@ void loop()
                     break;
                 }
             }
-        }
+			
+        }	// fin while conectadoBLE
+
 
         desconectadoBLE();                              //  ejecuta una vez al desconectar
         maqEstados_DESCONECTADO_BLE();
-    }*/
-}
+    }
+	
+	// desconectado BLE
+	
+}// fin loop
