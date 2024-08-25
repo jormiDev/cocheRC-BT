@@ -60,7 +60,7 @@ void maqEstados_INICIO(){
 //  1
 // INICIO + conectado a BLE
 void maqEstados_CONECTADO_BLE(){
-    maquinaEstados = ME_DESCONECTADO_BLE;
+    maquinaEstados = ME_CONECTADO_BLE;
 }
 
 //  2
