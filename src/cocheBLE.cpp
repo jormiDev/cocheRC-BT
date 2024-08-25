@@ -73,9 +73,21 @@ void conectadoBLE()
 
  // Se ejecuta al desconectarse al coche (una sola vez)
  void desconectadoBLE(){
+	 // mensaje desconexion BLE
 	 Serial.print("loop  : Disconnected BLE    (MAC) ");
 	 Serial.println(central.address());
-	 digitalWrite(ledPin, LOW); // will turn the LED off
+
+	 // modo y dirección a default
+	 ble_Modo = BLE_MODO_DEFAULT;
+	 unor4wifiCharacteristicMODO.writeValue(ble_Modo);
+	 ble_Direc = BLE_DIREC_DEFAULT;
+	 unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
+
+	 // parar motores
+	 motorDC_stop();
+	 
+	 // apagar led indicador conexción
+	 digitalWrite(ledPin, LOW); // will turn the LED off	 
  }
 
 
@@ -84,17 +96,8 @@ void conectadoBLE()
  }
 
 
- // Codigo loop cuando conectado  
+ // Codigo loop se ejecuta mientras este conectado cada iteración
  void loopConectado(){
- }
-
-
- // Codigo loop cuando DESconectado
- void loopDesconectado(){
-	ble_Modo = BLE_MODO_DEFAULT;
-	unor4wifiCharacteristicMODO.writeValue(ble_Modo);
-	ble_Direc = BLE_DIREC_DEFAULT;
-	unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
  }
 
 
