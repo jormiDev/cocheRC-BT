@@ -28,7 +28,7 @@ extern int maquinaEstados;
  * 	* * * * * Funciones * * * * *
  */
 
-// modo manual - app_STOP
+// modo manual /auto - app_STOP
 void manual_STOP(); 
 
 // modo manual - app_FWD
