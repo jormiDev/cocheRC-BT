@@ -32,6 +32,7 @@ extern int maquinaEstados;
 void conectadoBLE();
 
 // Se ejecuta al desconectarse al coche (una sola vez)
+//  Modo y dirección a default en caso de desconectar
 void desconectadoBLE();
 
 //Se ejecuta al solicitar cerrar la app MIT
@@ -39,10 +40,6 @@ void quitappBLE();
 
 // Codigo loop cuando conectado    
 void loopConectado();
-
-// Codigo loop cuando DESconectado
-//  Modo y dirección a default en caso de desconectar
-void loopDesconectado();
 
 // Caracteristica MODO
 // lee caracteristica BLE y actualiza : vble_Modo
