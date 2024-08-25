@@ -76,6 +76,11 @@ void conectadoBLE()
 	 Serial.print("loop  : Disconnected BLE    (MAC) ");
 	 Serial.println(central.address());
 	 digitalWrite(ledPin, LOW); // will turn the LED off
+	 
+	 ble_Modo = BLE_MODO_DEFAULT;
+	 unor4wifiCharacteristicMODO.writeValue(ble_Modo);
+	 ble_Direc = BLE_DIREC_DEFAULT;
+	 unor4wifiCharacteristicDIREC.writeValue(ble_Direc);	 
  }
 
 
@@ -86,15 +91,6 @@ void conectadoBLE()
 
  // Codigo loop cuando conectado  
  void loopConectado(){
- }
-
-
- // Codigo loop cuando DESconectado
- void loopDesconectado(){
-	ble_Modo = BLE_MODO_DEFAULT;
-	unor4wifiCharacteristicMODO.writeValue(ble_Modo);
-	ble_Direc = BLE_DIREC_DEFAULT;
-	unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
  }
 
 
