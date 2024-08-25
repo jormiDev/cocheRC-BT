@@ -28,7 +28,7 @@ extern int maquinaEstados;
  * 	* * * * * Funciones * * * * *
  */
 
-// modo manual - app_STOP
+// modo manual/auto - app_STOP
 void manual_STOP(); 
 
 // modo manual - app_FWD
@@ -58,7 +58,7 @@ void manual_180();
 void maqEstados_INICIO();
 
 //  1
-// INICIO + conectado a BLE
+// INICIO + conectado a BLE + todo parado
 void maqEstados_CONECTADO_BLE();
 
 //  2
