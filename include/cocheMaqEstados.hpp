@@ -8,6 +8,7 @@
 #include <SPI.h>
 #include "constantes.h"
 #include "cocheBLE.hpp"
+#include "coche_motorDC.hpp"
 
 /*
  * 	Objetos y variables

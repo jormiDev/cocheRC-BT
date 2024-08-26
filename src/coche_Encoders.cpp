@@ -14,8 +14,8 @@ void encoders_setup()
     rpmIzquierda = 0;
 
     // init shaft encoder
-    attachInterrupt(digitalPinToInterrupt(2), ISR_CountDerecha, RISING);
-    attachInterrupt(digitalPinToInterrupt(3), ISR_CountIzquierda, RISING);
+    attachInterrupt(digitalPinToInterrupt(PIN_ENC_DCHA), ISR_CountDerecha, RISING);
+    attachInterrupt(digitalPinToInterrupt(PIN_ENC_IZQ), ISR_CountIzquierda, RISING);
 
     // init IRQ timer
     miTimer.setInterval(ISR_timerone, 5000);

@@ -15,23 +15,24 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
 #ifndef __JORMAZ_CONSTANTES_H__
 #define __JORMAZ_CONSTANTES_H__
 
-
 /*
 Pines conectados
 */
+#define PIN_ENC_DCHA 			2 		// Wncoder rotación lado derecho
+#define PIN_ENC_IZQ 			3		// Encoder rotación lado izquierdo
 
-#define PIN_IN1           	    2       // Pines L298n		obligatorio PWD=IN2+IN4
-#define PIN_IN2           	    3		// PWD	
-#define PIN_IN3           	    4
-#define PIN_IN4           	    5       // PWD 
+#define PIN_IN1           	    4       // L298n
+#define PIN_IN2           	    5		
+#define PIN_ENA 				6		// PWD				
+#define PIN_IN3           	    7
+#define PIN_IN4           	    8 
+#define PIN_ENB 				9      	// PWD 
 
-#define PIN_SERVO               6       // PWM      SG90
+#define PIN_SERVO               10       // PWM      SG90
 
-#define PIN_HCSR04_ECHO         7       // Pines HC-RS04
-#define PIN_HCSR04_TRIGGER      8
+#define PIN_HCSR04_ECHO         12       // Pines HC-RS04
+#define PIN_HCSR04_TRIGGER      13
 
-#define PIN_ENC_DCHO     	    11     //Pin encoder rotación lado derecho
-#define PIN_ENC_IZQ      	    12     //Pin encoder rotación lado izquierdo
 
 
 /*
@@ -95,10 +96,6 @@ Características DIREC
 #define app_90DCHA             9       // giro 90 grados a derecha
 #define app_180                10      // giro 180 grados
 
-
-
-
-
 /*
 Maquina de estados
 */
@@ -109,11 +106,6 @@ Maquina de estados
 #define ME_QUIT_APP             3       // >> parar todo + desconectar BLE
 #define ME_MODO_AUTO            4       // parar todo + analizar escenario + inicir conduccion automatica
 #define ME_MODO_MANUAL          5       // parar todo + esperar comnandos
-
-
-
-
-
 
 #endif	//__JORMAZ_CONSTANTES_H__
 

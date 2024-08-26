@@ -33,6 +33,7 @@ void motorDC_A_fwd(byte _vel){
     digitalWrite(PIN_IN1, HIGH);
     digitalWrite(PIN_IN2, LOW);
     analogWrite(PIN_ENA, _vel);
+    Serial.println("motor A - fwd");
 }
 
 /*
@@ -43,6 +44,7 @@ void motorDC_A_aft(byte _vel)
     digitalWrite(PIN_IN1, LOW);
     digitalWrite(PIN_IN2, HIGH);
     analogWrite(PIN_ENA, _vel);
+    Serial.println("motor A - aft");
 }
 
 /*
@@ -53,6 +55,7 @@ void motorDC_A_stop()
     digitalWrite(PIN_IN1, LOW);
     digitalWrite(PIN_IN2, LOW);
     analogWrite(PIN_ENA, 0);
+    Serial.println("motor A - stop");
 }
 
 /*
@@ -62,6 +65,7 @@ void motorDC_B_fwd(byte _vel){
     digitalWrite(PIN_IN3, HIGH);
     digitalWrite(PIN_IN4, LOW);
     analogWrite(PIN_ENB, _vel);
+    Serial.println("motor    B - fwd");
 }
 
 /*
@@ -72,6 +76,7 @@ void motorDC_B_aft(byte _vel)
     digitalWrite(PIN_IN3, LOW);
     digitalWrite(PIN_IN4, HIGH);
     analogWrite(PIN_ENB, _vel);
+    Serial.println("motor    B - aft");
 }
 
 /*
@@ -82,6 +87,7 @@ void motorDC_B_stop()
     digitalWrite(PIN_IN3, LOW);
     digitalWrite(PIN_IN4, LOW);
     analogWrite(PIN_ENB, 0);
+    Serial.println("motor    B - stop");
 }
 
 /*
@@ -90,6 +96,7 @@ avance AMBOS motores
 void motorDC_fwd(byte _vel){
     motorDC_A_fwd(_vel);
     motorDC_B_fwd(_vel);
+    Serial.println("motores         - fwd");
 }
 
 /*
@@ -98,6 +105,7 @@ atras AMBOS motores
 void motorDC_aft(byte _vel){
     motorDC_A_aft(_vel);
     motorDC_B_aft(_vel);
+    Serial.println("motores         - aft");
 }
 
 /*
@@ -106,6 +114,7 @@ stop AMBOS motores
 void motorDC_stop(){
     motorDC_A_stop();
     motorDC_B_stop();
+    Serial.println("motores         - stop");
 }
 
 /*
@@ -114,7 +123,7 @@ giro 90 derecha
 void motorC_90_DRCHA(){
                                     // PENDIENTE
 
-
+Serial.println("motores                     90 derecha");
 }
 
 /*
@@ -124,7 +133,7 @@ void motorDC_90_IZQDA()
 {
                                    // PENDIENTE
 
-
+Serial.println("motores                     90 izquierda");
 }
 
 /*
@@ -133,8 +142,7 @@ giro 180
 void motor_DC_180()
 {
                                    // PENDIENTE
-
-
+Serial.println("motores                     180");
 }
 
 /*

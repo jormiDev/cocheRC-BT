@@ -183,15 +183,8 @@ void loop()
                 }
             }
 
-			//  caracteristica DIREC modificada - modo AUTO
-            if (caracteristicaDIREC() && ble_Modo_int == app_AUTO){                 
-                if(ble_Direc_int == app_STOP){
-                    manual_STOP();
-                }
-			}
-
-			//  caracteristica DIREC modificada - modo MANUAL
-            else if (caracteristicaDIREC() && ble_Modo_int == app_MANU){                 
+			//  caracteristica DIREC modificada
+            else if (caracteristicaDIREC() ){                 
                 switch (ble_Direc_int){
                 case app_STOP:
                     manual_STOP();
@@ -222,7 +215,13 @@ void loop()
                     break;
                 }
             }
-			
+
+            // maquina de estados del modo AUTO
+            if (maquinaEstados == ME_MODO_AUTO)
+            {
+                Serial.println("modo AUTO activado!");
+            }
+
         }	// fin while conectadoBLE
 
 

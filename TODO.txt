@@ -94,9 +94,12 @@ Github -  merge  rama CocheRC-BT / sensores dentro de main
 
 Github - crear rama motorDC
 
-motores 001    240240820
+motores 001    20240820
     crear coche_motorDC
-     
+
+motores 002     20240826
+     test:  via Serial.println, probar la app MIT para manejo del coche medienta los botones
+     limpieza de ficheros antguos
 
 
 ---------
