@@ -101,6 +101,28 @@ motores 002     20240826
      test:  via Serial.println, probar la app MIT para manejo del coche medienta los botones
      limpieza de ficheros antguos
 
+motores 003     20240828
+    fritzing - actualizar esquema
+    coche -  realizar cableado final
+    coche - comprobar HC-SR04
+    coche - comprobar SG90
+    coche - comprobar encoders
+
+
+
+motores 004
+    coche_motorDC - test
+    test coche_motorDC
+    coche - comprobar motores
+    coche - probar modo manual appMIt
+
+
+
+
+
+
+
+
 
 ---------
 

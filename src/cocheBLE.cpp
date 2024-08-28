@@ -98,6 +98,8 @@ void conectadoBLE()
 
  // Codigo loop se ejecuta mientras este conectado cada iteración
  void loopConectado(){
+
+	 //encoders_info();
  }
 
 

@@ -140,16 +140,17 @@ void loop()
     /*
     TEST
     */
-    //ultrasonidos_test01();
-    //ultrasonidos_test02();
-    //servo_test01();
-    //servo_test02();
-    //servo_test03();
-    //encoders_test01();
-    //encoders_test02();
+    // ultrasonidos_test01();
+    // ultrasonidos_test02();
+    // servo_test01();
+    // servo_test02();
+    // servo_test03();
+    // encoders_test01();
+    // encoders_test02();
+    // encoders_test03();
 
-
-	// loop
+    
+    // loop
     // if a central is connected to peripheral:
     if (central){
 
@@ -162,8 +163,8 @@ void loop()
 
             loopConectado();                            //  loop cuando conectado
 
-			//  caracteristica MODO modificada
-            if( caracteristicaMODO() ){                 
+            //  caracteristica MODO modificada
+            if( caracteristicaMODO() ){
                 switch (ble_Modo_int){
                 case app_QUIT:
                     maqEstados_QUIT_APP();
@@ -174,7 +175,7 @@ void loop()
                 case app_AUTO:
                     maqEstados_MODO_AUTO();
                     break;
-					case app_DISC:
+                    case app_DISC:
                     maqEstados_DESCONECTADO_BLE();
                     break;
                 default:
@@ -183,8 +184,8 @@ void loop()
                 }
             }
 
-			//  caracteristica DIREC modificada
-            else if (caracteristicaDIREC() ){                 
+            //  caracteristica DIREC modificada
+            else if (caracteristicaDIREC() ){
                 switch (ble_Direc_int){
                 case app_STOP:
                     manual_STOP();
@@ -228,7 +229,9 @@ void loop()
         desconectadoBLE();                              //  ejecuta una vez al desconectar
         maqEstados_DESCONECTADO_BLE();
     }
-	
-	// desconectado BLE
-	
+
+    // desconectado BLE
+
+        
+
 }// fin loop

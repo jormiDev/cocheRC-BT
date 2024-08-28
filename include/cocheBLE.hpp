@@ -8,6 +8,7 @@
 #include <SPI.h>
 #include "constantes.h"
 #include "cocheMaqEstados.hpp"
+#include "coche_Encoders.hpp"
 
 /*
  * 	Objetos y variables

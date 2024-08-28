@@ -54,12 +54,12 @@ void ISR_timerone()
 Info de velocidades por puerto serial
 */
 void encoders_info(){
-    Serial.print("Encoder Drcho \t rpms Actuales  ( ");
-    Serial.print(rpmDerecha, 5);
-    Serial.println(" )");
+    Serial.print("Encoder \t\t DRCHA \t rpms ( ");
+    Serial.print(rpmDerecha);
+    Serial.print(" )\t\t");
 
-    Serial.print("Encoder Izqdo \t rpms Actuales  ( ");
-    Serial.print(rpmIzquierda, 5);
+    Serial.print("IZQDA \t rpms ( ");
+    Serial.print(rpmIzquierda);
     Serial.println(" )");
 }
 
