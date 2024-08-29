@@ -18,7 +18,7 @@ void encoders_setup()
     attachInterrupt(digitalPinToInterrupt(PIN_ENC_IZQ), ISR_CountIzquierda, RISING);
 
     // init IRQ timer
-    miTimer.setInterval(ISR_timerone, 5000);
+    miTimer.setInterval(ISR_timerone, ENCODER_IRQ_TIMER);
 }
 
 /*

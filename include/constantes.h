@@ -46,13 +46,15 @@ Constastes del programa
 #define VELOCIDAD_STOP              0       // velocidad 0
 #define VELOCIDAD_BAJA              50      // (MODO_MANU) velodidad para los giros
 #define VELOCIDAD_MEDIA             100     // (MODO_MANU) velocodad estandar 
-#define VELOCIDAD_INVERSA           -50     // (MODO MANU) motor inverso giro 180
+#define VELOCIDAD_INVERSA           50      // (MODO MANU) motor inverso giro 180
+#define VELOCIDAD_MAX				255
 
 #define HCSR04_DELAY_MS             30      // HC-SR04 - para evitar fallo en multiples lecturas
 
 #define SERVO_DELAY_MS              1300    // SG90 - delay (maximo) para posicionar el SG90
 
 #define HUECOS_ENCODER              20      // Huecos en el disco de los encoders
+#define ENCODER_IRQ_TIMER			1000	// ms entre llamadas a la funcion IRQ
 
 /*
 App MIT inventor

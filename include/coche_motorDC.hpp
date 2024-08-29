@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "constantes.h"
+#include "coche_Encoders.hpp"
 
 /*
 {
@@ -79,13 +80,17 @@ void motor_DC_180();
 Funciones de TEST
 */
 
-//
+// test motor DRCHA (stop  -fwd BAJA - stop - aft - stop - fwd MEDIA - stop)
 void motorDC_test01();
 
-//
+// motor IZQDA (stop  -fwd BAJA - stop - aft - stop - fwd MEDIA - stop)
 void motorDC_test02();
 
-//
+// ambos motores (stop  -fwd BAJA - stop - aft - stop - fwd MEDIA - stop)
 void motorDC_test03();
+
+// calculo de RPM para todas las velocidades
+void motorDC_test4();
+
 
 #endif

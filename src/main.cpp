@@ -148,8 +148,9 @@ void loop()
     // encoders_test01();
     // encoders_test02();
     // encoders_test03();
+    motorDC_test01();
 
-    
+    /*
     // loop
     // if a central is connected to peripheral:
     if (central){
@@ -231,7 +232,7 @@ void loop()
     }
 
     // desconectado BLE
-
+*/
         
 
 }// fin loop

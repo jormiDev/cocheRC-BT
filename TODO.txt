@@ -110,8 +110,12 @@ motores 003     20240828
 
 
 
-motores 004
+motores 004     20240829
     coche_motorDC - test
+
+
+
+    delays no bloqueantes
     test coche_motorDC
     coche - comprobar motores
     coche - probar modo manual appMIt

@@ -146,33 +146,182 @@ Serial.println("motores                     180");
 }
 
 /*
-Test 01 
-
+Test 01
+motor DRCHA (stop  -fwd BAJA - stop - aft - stop - fwd MEDIA - stop)
 */
 void motorDC_test01()
 {
     delay(5000);
-    Serial.println("Test 01");
+    Serial.println("Test 01 : motor DRCHA");
 
+    Serial.println("stop    VELOCIDAD_STOP");       
+    delay(1000);
+    motorDC_A_stop();                               
+    delay(5000);
 
+    Serial.println("fwd     VELOCIDAD_BAJA");       
+    delay(1000);
+    motorDC_A_fwd(VELOCIDAD_BAJA);                  
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");       
+    delay(1000);
+    motorDC_A_stop();                               
+    delay(5000);
+
+    Serial.println("aft     VELOCIDAD_INVERSA");
+    delay(1000);
+    motorDC_A_aft(VELOCIDAD_INVERSA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_A_stop();
+    delay(5000);
+
+    Serial.println("fwd     VELOCIDAD_MEDIA");
+    delay(1000);
+    motorDC_A_fwd(VELOCIDAD_MEDIA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");       
+    delay(1000);
+    motorDC_A_stop();                               
+    delay(5000);
 }
 
 /*
-Test 02 
+Test 02
+motor IZQDA (stop  -fwd BAJA - stop - aft - stop - fwd MEDIA - stop)
 */
 void motorDC_test02()
 {
     delay(5000);
-    Serial.println("Test 02");
-    
+    Serial.println("Test 02 : motor IZQDA");
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_B_stop();
+    delay(5000);
+
+    Serial.println("fwd     VELOCIDAD_BAJA");
+    delay(1000);
+    motorDC_B_fwd(VELOCIDAD_BAJA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_B_stop();
+    delay(5000);
+
+    Serial.println("aft     VELOCIDAD_INVERSA");
+    delay(1000);
+    motorDC_B_aft(VELOCIDAD_INVERSA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_B_stop();
+    delay(5000);
+
+    Serial.println("fwd     VELOCIDAD_MEDIA");
+    delay(1000);
+    motorDC_B_fwd(VELOCIDAD_MEDIA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_B_stop();
+    delay(5000);
 }
 
 /*
-Test 03 
+Test 03
+ambos motores (stop  -fwd BAJA - stop - aft - stop - fwd MEDIA - stop)
 */
 void motorDC_test03()
 {
     delay(5000);
-    Serial.println("Test 03 :");
+    Serial.println("Test 03 : ambos motores");
 
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_stop();
+    delay(5000);
+
+    Serial.println("fwd     VELOCIDAD_BAJA");
+    delay(1000);
+    motorDC_fwd(VELOCIDAD_BAJA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_stop();
+    delay(5000);
+
+    Serial.println("aft     VELOCIDAD_INVERSA");
+    delay(1000);
+    motorDC_aft(VELOCIDAD_INVERSA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_stop();
+    delay(5000);
+
+    Serial.println("fwd     VELOCIDAD_MEDIA");
+    delay(1000);
+    motorDC_fwd(VELOCIDAD_MEDIA);
+    delay(5000);
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_stop();
+    delay(5000);
+}
+
+/*
+Test 04
+calculo de RPM para todas las velocidades
+*/
+void motorDC_test04()
+{
+    delay(5000);
+    Serial.println("Test 04 : RPMs");
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_stop();
+    delay(5000);
+    encoders_info();
+
+    Serial.println("fwd     VELOCIDAD_BAJA");
+    delay(1000);
+    motorDC_fwd(VELOCIDAD_BAJA);
+    delay(5000);
+    encoders_info();
+
+    Serial.println("fwd     VELOCIDAD_MEDIA");
+    delay(1000);
+    motorDC_fwd(VELOCIDAD_MEDIA);
+    delay(5000);
+    encoders_info();
+
+    Serial.println("fwd     VELOCIDAD_MAX");
+    delay(1000);
+    motorDC_fwd(VELOCIDAD_MAX);
+    delay(5000);
+    encoders_info();
+
+    Serial.println("stop    VELOCIDAD_STOP");
+    delay(1000);
+    motorDC_stop();
+    delay(5000);
+    encoders_info();
+
+    Serial.println("aft     VELOCIDAD_INVERSA");
+    delay(1000);
+    motorDC_aft(VELOCIDAD_INVERSA);
+    delay(5000);
+    encoders_info();
 }
