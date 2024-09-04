@@ -29,8 +29,7 @@ Objetos y variables
 */
 
 extern int maquinaEstados;
-extern byte motorA_ENA; // Velocidad motorA 0.255
-extern byte motorB_ENB; // Velocidad motorB 0..255
+
 
 /*
 Funciones

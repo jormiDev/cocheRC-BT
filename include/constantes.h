@@ -54,7 +54,7 @@ Constastes del programa
 #define SERVO_DELAY_MS              1300    // SG90 - delay (maximo) para posicionar el SG90
 
 #define HUECOS_ENCODER              20      // Huecos en el disco de los encoders
-#define ENCODER_IRQ_TIMER			1000	// ms entre llamadas a la funcion IRQ
+#define ENCODER_IRQ_TIMER			5000	// ms entre llamadas a la funcion IRQ
 
 /*
 App MIT inventor

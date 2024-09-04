@@ -110,11 +110,16 @@ motores 003     20240828
 
 
 
-motores 004     20240829
+motores 004     20240904
     coche_motorDC - test
+    solucion fallo potencia
 
 
 
+    lib L298N 
+    comprobar cableado encoders
+    comprobar cableado motores
+    montaje final cocheRC
     delays no bloqueantes
     test coche_motorDC
     coche - comprobar motores

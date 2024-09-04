@@ -95,11 +95,11 @@ void servo_test03()
     { // goes from 0 degrees to 180 degrees
         // in steps of 1 degree
         servo_orienta(pos); // tell servo to go to position in variable 'pos'
-        delay(SERVO_DELAY_MS); // waits 15ms for the servo to reach the position
+        delay(SERVO_DELAY_MS/5); // waits 15ms for the servo to reach the position
     }
     for (int pos = -90; pos >= 90; pos -= 1)
     {                       // goes from 180 degrees to 0 degrees
         servo_orienta(pos); // tell servo to go to position in variable 'pos'
-        delay(SERVO_DELAY_MS); // waits 15ms for the servo to reach the position
+        delay(SERVO_DELAY_MS/5); // waits 15ms for the servo to reach the position
     }
 }

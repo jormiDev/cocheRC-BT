@@ -16,11 +16,10 @@
 #include "coche_Encoders.hpp"
 
 
-// listen for Bluetooth® Low Energy peripherals to connect:
-BLEDevice central;
-// Bluetooth® Low Energy LED Service
-BLEService unor4wifiService(BLE_SERVICE); 
-// BlLE Characteristic
+// coche_BLE
+BLEDevice central;                              // listen for Bluetooth® Low Energy peripherals to connect:
+BLEService unor4wifiService(BLE_SERVICE);       // Bluetooth® Low Energy LED Service
+                                                // BlLE Characteristic
 BLEStringCharacteristic unor4wifiCharacteristicMODO(BLE_CARACT_MODO, BLERead | BLEWrite | BLENotify, BLE_CARACT_MODO_LONG);
 String ble_Modo = BLE_MODO_DEFAULT;
 int ble_Modo_int = BLE_MODO_DEFAULT_INT;
@@ -28,8 +27,9 @@ BLEStringCharacteristic unor4wifiCharacteristicDIREC(BLE_CARACT_DIREC, BLERead |
 String ble_Direc = BLE_DIREC_DEFAULT;
 int ble_Direc_int = BLE_MODO_DEFAULT_INT;
 
-const int ledPin = LED_BUILTIN; // on  BLE conectado / off BLE desconectado
+const int ledPin = LED_BUILTIN;                 // on  BLE conectado / off BLE desconectado
 
+// coche_MaqEstados
 int maquinaEstados;                 
 
 // coche_HC-RS04
@@ -49,6 +49,9 @@ float rpmIzquierda;                    // RPM motor izquierdo
 float rpmDerechaObjetivo;              // RPM motor derecho Deseadas
 float rpmIzquierdaObjetivo;            // RPM motor izquierdo Deseadas
 
+// coche_motorDC
+
+
 /*
  * ********   S E T U P   ***************
  */
@@ -67,8 +70,8 @@ void setup(){
     Serial.println("");
     Serial.println("setup : init");
 
-    // set LED pin to output mode
-    pinMode(ledPin, OUTPUT);
+    // coche_BLE
+    pinMode(ledPin, OUTPUT);                    // set LED pin to output mode
 
     // begin initialization
     if (!BLE.begin())
@@ -110,10 +113,13 @@ void setup(){
     encoders_setup();
     Serial.println("setup : encoders       init OK");
 
+    // coche_motorDC
+    motorDC_setup();
+    Serial.println("setup : motorDC        init OK");
 
     // fin setup
     Serial.println("setup : fin");
-    delay(5000);
+    delay(3000);
     Serial.println("");
     Serial.println("loop  : init");
 
@@ -140,7 +146,7 @@ void loop()
     /*
     TEST
     */
-    // ultrasonidos_test01();
+    //ultrasonidos_test01();
     // ultrasonidos_test02();
     // servo_test01();
     // servo_test02();
@@ -149,6 +155,9 @@ void loop()
     // encoders_test02();
     // encoders_test03();
     motorDC_test01();
+
+
+
 
     /*
     // loop

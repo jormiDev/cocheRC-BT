@@ -10,20 +10,14 @@ void motorDC_setup()
     pinMode(PIN_IN1, OUTPUT);
     pinMode(PIN_IN2, OUTPUT);
 
-    motorA_ENA = 0;
-    digitalWrite(PIN_IN1, LOW);
-    digitalWrite(PIN_IN2, LOW);
-    analogWrite(PIN_ENA, 0);
+    motorDC_A_stop();
 
     //intn motor B + stop soft
     pinMode(PIN_ENB, OUTPUT);       //PWD
     pinMode(PIN_IN3, OUTPUT);
     pinMode(PIN_IN4, OUTPUT);
-
-    motorB_ENB = 0;
-    digitalWrite(PIN_IN3, LOW);
-    digitalWrite(PIN_IN2, LOW);
-    analogWrite(PIN_IN4, 0);
+    
+    motorDC_B_stop();
 } 
 
 /*
