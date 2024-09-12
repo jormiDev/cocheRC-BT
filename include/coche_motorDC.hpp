@@ -4,6 +4,7 @@
 #include "Arduino.h"
 #include "constantes.h"
 #include "coche_Encoders.hpp"
+#include "L298NX2.h"
 
 /*
 {
@@ -29,14 +30,15 @@ Objetos y variables
 */
 
 extern int maquinaEstados;
+extern L298NX2 myMotors;
 
+    /*
+    Funciones
+    */
 
-/*
-Funciones
-*/
-
-// init del L298N
-void motorDC_setup();
+    // init del L298N
+    void
+    motorDC_setup();
 
 // motorA - avance
 void motorDC_A_fwd(byte _vel);
@@ -73,6 +75,9 @@ void motorDC_90_IZQDA();
 
 // giro 180
 void motor_DC_180();
+
+// info
+void motorDC_info();
 
 
 /*

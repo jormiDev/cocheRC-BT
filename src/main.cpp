@@ -8,6 +8,7 @@
 #include "HCSR04.h"
 #include "Servo.h"
 #include "Countimer.h"
+#include "L298NX2.h"
 
 #include <constantes.h>
 #include "cocheBLE.hpp"
@@ -50,7 +51,7 @@ float rpmDerechaObjetivo;              // RPM motor derecho Deseadas
 float rpmIzquierdaObjetivo;            // RPM motor izquierdo Deseadas
 
 // coche_motorDC
-
+L298NX2 myMotors(PIN_ENA, PIN_IN1, PIN_IN2, PIN_ENB, PIN_IN3, PIN_IN4);
 
 /*
  * ********   S E T U P   ***************
@@ -154,12 +155,11 @@ void loop()
     // encoders_test01();
     // encoders_test02();
     // encoders_test03();
-    motorDC_test01();
+    // motorDC_test01();
+    // motorDC_test02();
+    // motorDC_test03();
 
-
-
-
-    /*
+    
     // loop
     // if a central is connected to peripheral:
     if (central){
@@ -241,7 +241,7 @@ void loop()
     }
 
     // desconectado BLE
-*/
+
         
 
 }// fin loop

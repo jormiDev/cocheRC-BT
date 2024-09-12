@@ -5,28 +5,16 @@ Init del L298N
 */
 void motorDC_setup()
 {
-    // init motor A + stop soft
-    pinMode(PIN_ENA, OUTPUT);       //PWD  
-    pinMode(PIN_IN1, OUTPUT);
-    pinMode(PIN_IN2, OUTPUT);
-
-    motorDC_A_stop();
-
-    //intn motor B + stop soft
-    pinMode(PIN_ENB, OUTPUT);       //PWD
-    pinMode(PIN_IN3, OUTPUT);
-    pinMode(PIN_IN4, OUTPUT);
-    
-    motorDC_B_stop();
+    myMotors.setSpeed(VELOCIDAD_STOP);
+    myMotors.stop();
 } 
 
 /*
 motor A - avance
 */
 void motorDC_A_fwd(byte _vel){
-    digitalWrite(PIN_IN1, HIGH);
-    digitalWrite(PIN_IN2, LOW);
-    analogWrite(PIN_ENA, _vel);
+    myMotors.setSpeedA(_vel);
+    myMotors.forwardA();
     Serial.println("motor A - fwd");
 }
 
@@ -35,9 +23,8 @@ motor A - atras
 */
 void motorDC_A_aft(byte _vel)
 {
-    digitalWrite(PIN_IN1, LOW);
-    digitalWrite(PIN_IN2, HIGH);
-    analogWrite(PIN_ENA, _vel);
+    myMotors.setSpeedA(_vel);
+    myMotors.backwardA();
     Serial.println("motor A - aft");
 }
 
@@ -46,9 +33,8 @@ motor A - stop
 */
 void motorDC_A_stop()
 {
-    digitalWrite(PIN_IN1, LOW);
-    digitalWrite(PIN_IN2, LOW);
-    analogWrite(PIN_ENA, 0);
+    myMotors.setSpeedA(VELOCIDAD_STOP);
+    myMotors.stopA();
     Serial.println("motor A - stop");
 }
 
@@ -56,9 +42,8 @@ void motorDC_A_stop()
 motor B - avance
 */
 void motorDC_B_fwd(byte _vel){
-    digitalWrite(PIN_IN3, HIGH);
-    digitalWrite(PIN_IN4, LOW);
-    analogWrite(PIN_ENB, _vel);
+    myMotors.setSpeedB(_vel);
+    myMotors.forwardB();
     Serial.println("motor    B - fwd");
 }
 
@@ -67,9 +52,8 @@ motor B - atras
 */
 void motorDC_B_aft(byte _vel)
 {
-    digitalWrite(PIN_IN3, LOW);
-    digitalWrite(PIN_IN4, HIGH);
-    analogWrite(PIN_ENB, _vel);
+    myMotors.setSpeedB(_vel);
+    myMotors.backwardB();
     Serial.println("motor    B - aft");
 }
 
@@ -78,9 +62,8 @@ motor B - stop
 */
 void motorDC_B_stop()
 {
-    digitalWrite(PIN_IN3, LOW);
-    digitalWrite(PIN_IN4, LOW);
-    analogWrite(PIN_ENB, 0);
+    myMotors.setSpeedB(VELOCIDAD_STOP);
+    myMotors.stopB();
     Serial.println("motor    B - stop");
 }
 
@@ -115,9 +98,12 @@ void motorDC_stop(){
 giro 90 derecha
 */
 void motorC_90_DRCHA(){
-                                    // PENDIENTE
-
-Serial.println("motores                     90 derecha");
+    Serial.print("motores                     90 derecha");
+    myMotors.setSpeedA(VELOCIDAD_BAJA);
+    myMotors.setSpeedB(VELOCIDAD_MEDIA);
+    myMotors.forwardForA(MOTOR_TIEMPO_90);
+    myMotors.forwardForB(MOTOR_TIEMPO_90);
+    Serial.println("   -  fin giro");
 }
 
 /*
@@ -125,9 +111,12 @@ giro 90 izquierda
 */
 void motorDC_90_IZQDA()
 {
-                                   // PENDIENTE
-
-Serial.println("motores                     90 izquierda");
+    Serial.print("motores                     90 izquierda");
+    myMotors.setSpeedA(VELOCIDAD_MEDIA);
+    myMotors.setSpeedB(VELOCIDAD_BAJA);
+    myMotors.forwardForA(MOTOR_TIEMPO_90);
+    myMotors.forwardForB(MOTOR_TIEMPO_90);
+    Serial.println("   -  fin giro");
 }
 
 /*
@@ -135,9 +124,31 @@ giro 180
 */
 void motor_DC_180()
 {
-                                   // PENDIENTE
-Serial.println("motores                     180");
+    Serial.print("motores                     giro 180");
+    myMotors.setSpeedA(VELOCIDAD_INVERSA);
+    myMotors.setSpeedB(VELOCIDAD_INVERSA);
+    myMotors.forwardForA(MOTOR_TIEMPO_180);
+    myMotors.backwardForB(MOTOR_TIEMPO_180);
+    Serial.println("   -  fin giro");
 }
+
+/*
+motorDC_info
+*/
+void motorDC_info(){
+    Serial.println("motores info");
+    Serial.print("\t\tMotor A is moving = ");
+    Serial.print(myMotors.isMovingA() ? "YES" : "NO");
+    Serial.print(" at speed = ");
+    Serial.println(myMotors.getSpeedA());
+    Serial.print("\t\tMotor B is moving = ");
+    Serial.print(myMotors.isMovingB() ? "YES" : "NO");
+    Serial.print(" at speed = ");
+    Serial.println(myMotors.getSpeedB());
+}
+
+
+
 
 /*
 Test 01

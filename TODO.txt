@@ -108,15 +108,16 @@ motores 003     20240828
     coche - comprobar SG90
     coche - comprobar encoders
 
-
-
 motores 004     20240904
     coche_motorDC - test
     solucion fallo potencia
 
+motores 005     20240912
+    librería L298NX
 
 
-    lib L298N 
+
+
     comprobar cableado encoders
     comprobar cableado motores
     montaje final cocheRC

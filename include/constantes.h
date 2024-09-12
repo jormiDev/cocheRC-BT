@@ -40,8 +40,8 @@ Constastes del programa
 */
 
 #define MOTOR_TIEMPO_PARO           200     // Delay para paso de movimiento a stop (ms)
-#define MOTOR_TIEMPO_90             350     // Delay tiempo de giro 90 grados
-#define MOTOR_TIEMPO_180            350     // Delay tiempo de giro 180 grados
+#define MOTOR_TIEMPO_90             750     // Delay tiempo de giro 90 grados
+#define MOTOR_TIEMPO_180            750     // Delay tiempo de giro 180 grados
 
 #define VELOCIDAD_STOP              0       // velocidad 0
 #define VELOCIDAD_BAJA              50      // (MODO_MANU) velodidad para los giros
