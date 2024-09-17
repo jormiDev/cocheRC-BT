@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "constantes.h"
+#include "main_debug.hpp"
 #include <HCSR04.h>
 
 /*

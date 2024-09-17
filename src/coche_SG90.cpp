@@ -1,8 +1,6 @@
 #include "coche_SG90.hpp" 
 
 
-
-
 /*
 Servo SG90 setup
 */
@@ -31,6 +29,12 @@ int servo_posicion(){
     posicionServo = myservo.read();
     return posicionServo - 90;
 }
+
+
+/*
+TEST
+*/
+
 
 /*
 Test 01 SG90

@@ -5,6 +5,7 @@
 #include "Countimer.h"
 
 #include "constantes.h"
+#include "main_debug.hpp"
 
 /*
 Objetos y variables

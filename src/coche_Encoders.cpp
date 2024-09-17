@@ -1,8 +1,6 @@
 #include "coche_Encoders.hpp" 
 
 
-
-
 /*
 Encoders setup
 */
@@ -62,6 +60,12 @@ void encoders_info(){
     Serial.print(rpmIzquierda);
     Serial.println(" )");
 }
+
+
+/*
+TEST
+*/
+
 
 /*
 Test 01 Encoders

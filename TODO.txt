@@ -115,6 +115,8 @@ motores 004     20240904
 motores 005     20240912
     librería L298NX
 
+motores 006     20240913
+    main_debug - agregar funciones de modo debug
 
 
 

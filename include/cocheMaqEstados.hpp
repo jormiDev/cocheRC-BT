@@ -9,6 +9,7 @@
 #include "constantes.h"
 #include "cocheBLE.hpp"
 #include "coche_motorDC.hpp"
+#include "main_debug.hpp"
 
 /*
  * 	Objetos y variables

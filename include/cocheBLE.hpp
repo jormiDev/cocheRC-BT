@@ -9,6 +9,8 @@
 #include "constantes.h"
 #include "cocheMaqEstados.hpp"
 #include "coche_Encoders.hpp"
+#include "main_debug.hpp"
+
 
 /*
  * 	Objetos y variables

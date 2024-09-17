@@ -1,18 +1,10 @@
 #include "cocheBLE.hpp"
 
-#include <Arduino.h>
-#include <ArduinoBLE.h>
-#include "WiFiS3.h"
-#include <Wire.h>
-#include <SPI.h>
-
 
 /*
- * 	* * * * * Funciones * * * * *
+conectadoBLE
+Se ejecuta al contectarse al coche (una vez por conexcion)
  */
-
-
-// Se ejecuta al contectarse al coche (una vez por conexcion)
 void conectadoBLE()
 {
 	// print the central's device
@@ -68,42 +60,50 @@ void conectadoBLE()
 	Serial.println(unor4wifiCharacteristicDIREC.value());
 
 	digitalWrite(ledPin, HIGH); // will turn the LED on
-	}
+}
 
+/*
+desconectadoBLE
+Se ejecuta al desconectarse al coche (una sola vez)
+*/
+void desconectadoBLE()
+{
+	// mensaje desconexion BLE
+	Serial.print("loop  : Disconnected BLE    (MAC) ");
+	Serial.println(central.address());
 
- // Se ejecuta al desconectarse al coche (una sola vez)
- void desconectadoBLE(){
-	 // mensaje desconexion BLE
-	 Serial.print("loop  : Disconnected BLE    (MAC) ");
-	 Serial.println(central.address());
+	// modo y dirección a default
+	ble_Modo = BLE_MODO_DEFAULT;
+	unor4wifiCharacteristicMODO.writeValue(ble_Modo);
+	ble_Direc = BLE_DIREC_DEFAULT;
+	unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
 
-	 // modo y dirección a default
-	 ble_Modo = BLE_MODO_DEFAULT;
-	 unor4wifiCharacteristicMODO.writeValue(ble_Modo);
-	 ble_Direc = BLE_DIREC_DEFAULT;
-	 unor4wifiCharacteristicDIREC.writeValue(ble_Direc);
+	// parar motores
+	motorDC_stop();
 
-	 // parar motores
-	 motorDC_stop();
-	 
-	 // apagar led indicador conexción
-	 digitalWrite(ledPin, LOW); // will turn the LED off	 
+	// apagar led indicador conexción
+	digitalWrite(ledPin, LOW); // will turn the LED off	 
  }
 
-
- // Se ejecuta al solicitar cerrar la app MIT
+ /*
+ quitappBLE
+ Se ejecuta al solicitar cerrar la app MIT
+ */
  void quitappBLE(){
  }
 
-
- // Codigo loop se ejecuta mientras este conectado cada iteración
- void loopConectado(){
+/*
+loopConectado
+Codigo loop se ejecuta mientras este conectado cada iteración
+*/
+void loopConectado(){
 
 	 //encoders_info();
  }
 
-
-// Caracteristica MODO
+/*
+caracteristica MODO
+*/
 bool caracteristicaMODO(){
 	if (unor4wifiCharacteristicMODO.written())	{
 		ble_Modo = unor4wifiCharacteristicMODO.value();
@@ -129,9 +129,9 @@ bool caracteristicaMODO(){
 		return false;
 }
  
-
- 
-// Caracteristica DIRECCION
+/*
+Caracteristica DIRECCION
+*/
 bool caracteristicaDIREC(){
 	if (unor4wifiCharacteristicDIREC.written())	{
 		ble_Direc = unor4wifiCharacteristicDIREC.value();

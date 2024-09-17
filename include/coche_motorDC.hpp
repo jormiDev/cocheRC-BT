@@ -4,6 +4,7 @@
 #include "Arduino.h"
 #include "constantes.h"
 #include "coche_Encoders.hpp"
+#include "main_debug.hpp"
 #include "L298NX2.h"
 
 /*

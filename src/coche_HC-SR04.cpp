@@ -1,8 +1,6 @@
 #include "coche_HC-SR04.hpp" 
 
 
-
-
 /*
 Ultrasonidos_setup
 */
@@ -32,6 +30,11 @@ int ultrasonidos_decisionRumbo()
 {
     return 0;
 }
+
+
+/*
+TEST
+*/
 
 
 /*

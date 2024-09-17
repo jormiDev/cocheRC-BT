@@ -15,6 +15,7 @@
 #include "coche_HC-SR04.hpp"
 #include "coche_SG90.hpp"
 #include "coche_Encoders.hpp"
+#include "main_debug.hpp"
 
 
 // coche_BLE
@@ -53,13 +54,14 @@ float rpmIzquierdaObjetivo;            // RPM motor izquierdo Deseadas
 // coche_motorDC
 L298NX2 myMotors(PIN_ENA, PIN_IN1, PIN_IN2, PIN_ENB, PIN_IN3, PIN_IN4);
 
+
 /*
- * ********   S E T U P   ***************
+********   S E T U P   ***************
  */
 
+void setup()
+{
 
-void setup(){
-    
     // Serial init
     Serial.begin(9600);
     while (!Serial)
@@ -124,12 +126,10 @@ void setup(){
     Serial.println("");
     Serial.println("loop  : init");
 
-}//	setup
-
-
+} //	setup
 
 /*
- * ********   L O O P   ***************
+********   L O O P   ***************
  */
 
 void loop()

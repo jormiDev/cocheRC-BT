@@ -16,6 +16,11 @@ Arduino (servicio + caracteristicas)    Peripheral - the BLE device which accept
 #define __JORMAZ_CONSTANTES_H__
 
 /*
+DEBUG
+*/
+#define DEBUG_0					1		// Mensajes de debug
+
+/*
 Pines conectados
 */
 #define PIN_ENC_DCHA 			2 		// Wncoder rotación lado derecho
@@ -32,8 +37,6 @@ Pines conectados
 
 #define PIN_HCSR04_ECHO         12       // Pines HC-RS04
 #define PIN_HCSR04_TRIGGER      13
-
-
 
 /*
 Constastes del programa
