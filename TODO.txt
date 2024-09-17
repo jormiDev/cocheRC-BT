@@ -118,6 +118,10 @@ motores 005     20240912
 motores 006     20240913
     main_debug - agregar funciones de modo debug
 
+Github - crear rama montado
+
+montado 001     0240917
+
 
 
     comprobar cableado encoders
